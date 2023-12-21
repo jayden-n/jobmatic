@@ -6,12 +6,14 @@ import {
 	LoginPage,
 	RegisterPage,
 	DashboardPage,
+	ErrorPage,
 } from "./pages";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <HomePage />,
+		errorElement: <ErrorPage />,
 		children: [
 			{
 				index: true,
