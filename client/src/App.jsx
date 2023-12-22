@@ -1,17 +1,39 @@
+import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+	HomePage,
+	LandingPage,
+	LoginPage,
+	RegisterPage,
+	DashboardPage,
+	ErrorPage,
+} from "./pages";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <h1>Home page</h1>,
-	},
-	{
-		path: "/about",
-		element: (
-			<div>
-				<h1>about page</h1>
-			</div>
-		),
+		element: <HomePage />,
+		errorElement: <ErrorPage />,
+		children: [
+			{
+				index: true,
+				element: <LandingPage />,
+			},
+			{
+				path: "register",
+				element: <RegisterPage />,
+			},
+
+			{
+				path: "login",
+				element: <LoginPage />,
+			},
+
+			{
+				path: "dashboard",
+				element: <DashboardPage />,
+			},
+		],
 	},
 ]);
 
