@@ -5,13 +5,17 @@ import { links } from "../utils/links";
 import { NavLink } from "react-router-dom";
 
 const SmallSidebar = () => {
-	const data = useDashboardContext();
+	const { showSidebar, toggleSidebar } = useDashboardContext();
 
 	return (
 		<div>
-			<div className='sidebar-container show-container'>
+			<div
+				className={
+					showSidebar ? "sidebar-container show-container" : "sidebar-container"
+				}
+			>
 				<div className='content'>
-					<button type='button' className='close-btn'>
+					<button type='button' className='close-btn' onClick={toggleSidebar}>
 						<FaTimes />
 					</button>
 					<header>
@@ -22,7 +26,14 @@ const SmallSidebar = () => {
 						{links.map((link) => {
 							const { text, path, icon } = link;
 							return (
-								<NavLink to={path} key={text} className='nav-link'>
+								<NavLink
+									to={path}
+									key={text}
+									className='nav-link'
+									onClick={toggleSidebar}
+									// end: do not set current child to be 'active'
+									end
+								>
 									<span className='icon'>{icon}</span>
 									{text}
 								</NavLink>
