@@ -7,7 +7,9 @@ const LandingPage = () => {
 	return (
 		<Wrapper>
 			<nav>
-				<Logo />
+				<Link to='/'>
+					<Logo />
+				</Link>
 			</nav>
 			<div className='container page'>
 				<div className='info'>

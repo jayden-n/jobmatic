@@ -21,6 +21,7 @@ const Navbar = () => {
 		</Wrapper>
 	);
 };
+
 const Wrapper = styled.nav`
 	height: var(--nav-height);
 	display: flex;
