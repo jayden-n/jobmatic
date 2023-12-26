@@ -1,6 +1,6 @@
 import { FaWpforms } from "react-icons/fa";
 import { MdAdminPanelSettings, MdQueryStats } from "react-icons/md";
-import { IoBarChartSharp } from "react-icons/io";
+import { IoBarChartSharp } from "react-icons/io5";
 import { ImProfile } from "react-icons/im";
 
 export const links = [

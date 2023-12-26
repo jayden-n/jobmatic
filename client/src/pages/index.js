@@ -6,6 +6,6 @@ export { default as DashboardPage } from "./DashboardPage";
 export { default as ErrorPage } from "./ErrorPage";
 export { default as AddJobPage } from "./AddJobPage";
 export { default as AdminPage } from "./AdminPage";
-export { default as AllJobsPage } from "./ErrorPage";
+export { default as AllJobsPage } from "./AllJobsPage";
 export { default as ProfilePage } from "./ProfilePage";
 export { default as StatsPage } from "./StatsPage";
