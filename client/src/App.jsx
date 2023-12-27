@@ -7,6 +7,11 @@ import {
 	RegisterPage,
 	DashboardPage,
 	ErrorPage,
+	AddJobPage,
+	AdminPage,
+	AllJobsPage,
+	ProfilePage,
+	StatsPage,
 } from "./pages";
 
 const router = createBrowserRouter([
@@ -32,6 +37,28 @@ const router = createBrowserRouter([
 			{
 				path: "dashboard",
 				element: <DashboardPage />,
+				children: [
+					{
+						index: true,
+						element: <AddJobPage />,
+					},
+					{
+						path: "stats",
+						element: <StatsPage />,
+					},
+					{
+						path: "admin",
+						element: <AdminPage />,
+					},
+					{
+						path: "all-jobs",
+						element: <AllJobsPage />,
+					},
+					{
+						path: "profile",
+						element: <ProfilePage />,
+					},
+				],
 			},
 		],
 	},
