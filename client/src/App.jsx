@@ -13,6 +13,10 @@ import {
 	ProfilePage,
 	StatsPage,
 } from "./pages";
+import { checkDefaultTheme } from "./utils/constants";
+
+// if this true, it will be added to all of the pages
+checkDefaultTheme();
 
 const router = createBrowserRouter([
 	{
