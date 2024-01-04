@@ -39,12 +39,12 @@ app.post("/", (req, res) => {
 	res.json({ message: "data is received", data: req.body });
 });
 
-// GEL ALL JOBS
+// ========= GEL ALL JOBS =========
 app.get("/api/v1/jobs", (req, res) => {
 	res.status(200).json({ jobs });
 });
 
-// CREATE JOB
+// ========= CREATE JOB =========
 app.post("/api/v1/jobs", (req, res) => {
 	const { company, position } = req.body;
 
@@ -55,6 +55,19 @@ app.post("/api/v1/jobs", (req, res) => {
 	const id = nanoid(10);
 	const job = { id, company, position };
 	jobs.push(job);
+
+	// 201: creating a resource
+	res.status(201).json({ job });
+});
+
+//  ========= GET SINGLE JOB  =========
+app.get("/api/v1/jobs/:id", (req, res) => {
+	const { id } = req.params;
+	const job = jobs.find((job) => job.id === id);
+	if (!job) {
+		return res.status(404).json({ msg: `no job with id ${id}` });
+	}
+
 	res.status(200).json({ job });
 });
 
