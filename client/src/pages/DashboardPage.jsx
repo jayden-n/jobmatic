@@ -2,7 +2,7 @@
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import { BigSidebar, Navbar, SmallSidebar } from "../components";
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 import { checkDefaultTheme } from "../utils/constants";
 
 export const DashboardContext = createContext();
