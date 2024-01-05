@@ -26,8 +26,7 @@ let jobs = [
 if (process.env.NODE_ENV === "development") {
 	app.use(morgan("dev"));
 }
-
-// middleware
+// ========= MIDDLEWARE =========
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -92,7 +91,6 @@ app.patch("/api/v1/jobs/:id", (req, res) => {
 });
 
 //  ========= DELETE JOB  =========
-
 app.delete("/api/v1/jobs/:id", (req, res) => {
 	const { id } = req.params;
 	const job = jobs.find((job) => job.id === id);
@@ -104,6 +102,17 @@ app.delete("/api/v1/jobs/:id", (req, res) => {
 	jobs = newJobs;
 
 	res.status(200).json({ msg: "job deleted" });
+});
+
+//  ========= "NOT FOUND" MIDDLEWARE  =========
+app.use("*", (req, res) => {
+	res.status(404).json({ msg: "not found" });
+});
+
+//  ========= "ERROR" MIDDLEWARE  =========
+app.use((err, req, res, next) => {
+	console.log(err);
+	res.status(500).json({ msg: "something went wrong" });
 });
 
 const port = process.env.PORT || 5100;
