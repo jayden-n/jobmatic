@@ -54,5 +54,5 @@ export const deleteJob = async (req, res) => {
 		throw new NotFoundError(`no job with id ${id}`);
 	}
 
-	res.status(StatusCodes.OK).json({ msg: "job deleted", job: removeJob });
+	res.status(StatusCodes.OK).json({ msg: "job deleted", job: removedJob });
 };
