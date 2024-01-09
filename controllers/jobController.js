@@ -2,9 +2,10 @@ import "express-async-errors";
 import Job from "../models/JobModel.js";
 import { StatusCodes } from "http-status-codes";
 
-// ================== GEL ALL JOBS ==================
+// ================== GET ALL JOBS ==================
 export const getAllJobs = async (req, res) => {
-	const jobs = await Job.find({});
+	// only provide jobs to the specific user
+	const jobs = await Job.find({ createdBy: req.user.userId });
 	res.status(StatusCodes.OK).json({ jobs });
 };
 
@@ -17,6 +18,8 @@ export const getSingleJob = async (req, res) => {
 
 // ================== CREATE JOB ==================
 export const createJob = async (req, res) => {
+	req.body.createdBy = req.user.userId;
+
 	const job = await Job.create(req.body);
 	// 201: creating a resource
 	res.status(StatusCodes.CREATED).json({ job });
