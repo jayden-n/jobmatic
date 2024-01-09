@@ -1,14 +1,14 @@
 import { StatusCodes } from "http-status-codes";
 import User from "../models/UserModel.js";
-import bcrypt from "bcryptjs";
+import { comparePassword, passwordHashing } from "../utils/passwordHashing.js";
+import { UnauthenticatedError } from "../errors/customErrors.js";
 
 export const register = async (req, res) => {
 	// setting the first account always to be an admin - for easier testing purpose
 	const isFirstAccount = (await User.countDocuments()) === 0;
 	req.body.role = isFirstAccount ? "admin" : "user";
 
-	const salt = await bcrypt.genSalt(10);
-	const hashedPassword = await bcrypt.hash(req.body.password, salt);
+	const hashedPassword = await passwordHashing(req.body.password);
 
 	req.body.password = hashedPassword;
 
@@ -17,5 +17,14 @@ export const register = async (req, res) => {
 };
 
 export const login = async (req, res) => {
+	const user = await User.findOne({ email: req.body.email });
+
+	const isValidUser =
+		user && (await comparePassword(req.body.password, user.password));
+
+	if (!isValidUser) {
+		throw new UnauthenticatedError("invalid credentials");
+	}
+
 	res.send("login");
 };
