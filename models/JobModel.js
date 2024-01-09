@@ -20,6 +20,12 @@ const JobSchema = new mongoose.Schema(
 			type: String,
 			default: "earth",
 		},
+
+		// will be tied to users
+		createdBy: {
+			type: mongoose.Types.ObjectId,
+			ref: "User",
+		},
 	},
 	{ timestamps: true },
 );
