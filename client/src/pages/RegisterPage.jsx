@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
+import { Form, redirect, useNavigation, Link } from "react-router-dom";
 import styled from "styled-components";
 import { FormRow, Logo } from "../components";
 
 const RegisterPage = () => {
 	return (
 		<Wrapper>
-			<form className='form'>
+			<Form method='post' className='form'>
 				<div className='logo'>
 					<Logo />
 				</div>
@@ -32,7 +32,7 @@ const RegisterPage = () => {
 						Login
 					</Link>
 				</p>
-			</form>
+			</Form>
 		</Wrapper>
 	);
 };
@@ -49,7 +49,7 @@ const Wrapper = styled.section`
 	}
 
 	.form {
-		max-width: 400px;
+		max-width: 450px;
 		border-top: 5px solid var(--primary-500);
 	}
 
