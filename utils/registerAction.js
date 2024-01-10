@@ -1,5 +1,6 @@
 import customFetch from "../client/src/utils/customFetch";
 import { redirect } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const registerAction = async ({ request }) => {
 	// getting form data values
@@ -10,9 +11,10 @@ export const registerAction = async ({ request }) => {
 	// must always return something:
 	try {
 		await customFetch.post("/auth/register", data);
+		toast.success("Registration successful!");
 		return redirect("/login");
 	} catch (error) {
-		console.log(error);
+		toast.error(error?.response?.data?.msg);
 		return error;
 	}
 };
