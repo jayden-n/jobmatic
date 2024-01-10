@@ -14,6 +14,7 @@ import {
 	StatsPage,
 } from "./pages";
 import { checkDefaultTheme } from "./utils/constants";
+import { registerAction } from "../../utils/registerAction";
 
 // if this true, it will be added to all of the pages
 checkDefaultTheme();
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
 			{
 				path: "register",
 				element: <RegisterPage />,
+				action: registerAction,
 			},
 
 			{

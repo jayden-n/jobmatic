@@ -1,11 +1,15 @@
-import { Link } from "react-router-dom";
+import { Form, useNavigation, Link } from "react-router-dom";
 import styled from "styled-components";
 import { FormRow, Logo } from "../components";
 
 const RegisterPage = () => {
+	// checking state for submit button
+	const navigation = useNavigation();
+	const isSubmitting = navigation.state === "submitting";
+
 	return (
 		<Wrapper>
-			<form className='form'>
+			<Form method='post' className='form'>
 				<div className='logo'>
 					<Logo />
 				</div>
@@ -22,8 +26,8 @@ const RegisterPage = () => {
 				<FormRow type='email' name='email' defaultValue='jayden@gmail.com' />
 				<FormRow type='password' name='password' defaultValue='secret123' />
 
-				<button type='submit' className='btn btn-block'>
-					Submit
+				<button type='submit' className='btn btn-block' disabled={isSubmitting}>
+					{isSubmitting ? "submitting..." : "submit"}
 				</button>
 
 				<p>
@@ -32,7 +36,7 @@ const RegisterPage = () => {
 						Login
 					</Link>
 				</p>
-			</form>
+			</Form>
 		</Wrapper>
 	);
 };
@@ -49,7 +53,7 @@ const Wrapper = styled.section`
 	}
 
 	.form {
-		max-width: 400px;
+		max-width: 450px;
 		border-top: 5px solid var(--primary-500);
 	}
 
