@@ -40,6 +40,8 @@ const withValidationErrors = (validateValues) => {
 // 	body("name").notEmpty().withMessage("name is required"),
 // ]);
 
+// ================== JOB VALIDATION ==================
+
 export const validateJobInput = withValidationErrors([
 	body("company").notEmpty().withMessage("company is required"),
 	body("position").notEmpty().withMessage(" position is required"),
@@ -52,6 +54,7 @@ export const validateJobInput = withValidationErrors([
 		.withMessage(" invalid type value"),
 ]);
 
+// ================== ID PARAM VALIDATION ==================
 export const validateIdParam = withValidationErrors([
 	param("id")
 		.custom(async (value, { req }) => {
@@ -75,6 +78,7 @@ export const validateIdParam = withValidationErrors([
 		.withMessage("invalid MongoDB id"),
 ]);
 
+// ================== REGISTER VALIDATION ==================
 export const validateRegisterInput = withValidationErrors([
 	body("name").notEmpty().withMessage("name is required"),
 	body("email")
@@ -98,6 +102,7 @@ export const validateRegisterInput = withValidationErrors([
 	body("lastName").notEmpty().withMessage(" last name is required"),
 ]);
 
+// ================== LOGIN VALIDATION ==================
 export const validateLoginInput = withValidationErrors([
 	body("email")
 		.notEmpty()
@@ -107,6 +112,7 @@ export const validateLoginInput = withValidationErrors([
 	body("password").notEmpty().withMessage("password is required"),
 ]);
 
+// ================== UPDATE USER VALIDATION ==================
 export const validateUpdateUserInput = withValidationErrors([
 	body("name").notEmpty().withMessage("name is required"),
 	body("email")
