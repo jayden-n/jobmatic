@@ -1,9 +1,5 @@
 import "./index.css";
-import {
-	RouterProvider,
-	createBrowserRouter,
-	redirect,
-} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import {
 	HomePage,
 	LandingPage,
