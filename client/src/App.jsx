@@ -19,6 +19,7 @@ import { checkDefaultTheme } from "./utils/constants/constants";
 import { registerAction } from "./utils/actions/registerAction";
 import { loginAction } from "./utils/actions/loginAction";
 import { dashboardLoader } from "./utils/loaders/dashboardLoader";
+import { addJobAction } from "./utils/actions/addJobAction";
 
 // if this true, it will be added to all of the pages
 checkDefaultTheme();
@@ -53,6 +54,7 @@ const router = createBrowserRouter([
 					{
 						index: true,
 						element: <AddJobPage />,
+						action: addJobAction,
 					},
 					{
 						path: "stats",
