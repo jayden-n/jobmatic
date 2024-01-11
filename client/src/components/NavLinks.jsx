@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useDashboardContext } from "../hooks/useDashboardContext";
-import { links } from "../utils/links";
+
 import { NavLink } from "react-router-dom";
+import { links } from "../utils/constants/links";
 
 const NavLinks = ({ isBigSidebar }) => {
 	const { toggleSidebar, user } = useDashboardContext();
