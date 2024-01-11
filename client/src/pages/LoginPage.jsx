@@ -1,18 +1,24 @@
-import { Link } from "react-router-dom";
+import { Form, Link, useNavigation, useActionData } from "react-router-dom";
 import { FormRow, Logo } from "../components";
 import styled from "styled-components";
 
 const LoginPage = () => {
+	const navigation = useNavigation();
+	const isSubmitting = navigation.state === "submitting";
+
+	const errors = useActionData();
+
 	return (
 		<Wrapper>
-			<form className='form'>
+			<Form method='post' className='form'>
 				<Logo />
 				<h4>login</h4>
+				{errors?.msg && <p style={{ color: "red" }}>{errors.msg}</p>}
 				<FormRow type='email' name='email' defaultValue='jayden@gmail.com' />
 				<FormRow type='password' name='password' defaultValue='secret123' />
 
-				<button type='submit' className='btn btn-block'>
-					submit
+				<button type='submit' className='btn btn-block' disabled={isSubmitting}>
+					{isSubmitting ? "submitting..." : "submit"}
 				</button>
 
 				<button type='submit' className='btn btn-block'>
@@ -25,7 +31,7 @@ const LoginPage = () => {
 						Register
 					</Link>
 				</p>
-			</form>
+			</Form>
 		</Wrapper>
 	);
 };

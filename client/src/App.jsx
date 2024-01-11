@@ -13,8 +13,12 @@ import {
 	ProfilePage,
 	StatsPage,
 } from "./pages";
-import { checkDefaultTheme } from "./utils/constants";
-import { registerAction } from "../../utils/registerAction";
+import { checkDefaultTheme } from "./utils/constants/constants";
+
+// ===================== ACTIONS =====================
+import { registerAction } from "./utils/actions/registerAction";
+import { loginAction } from "./utils/actions/loginAction";
+import { dashboardLoader } from "./utils/loaders/dashboardLoader";
 
 // if this true, it will be added to all of the pages
 checkDefaultTheme();
@@ -38,11 +42,13 @@ const router = createBrowserRouter([
 			{
 				path: "login",
 				element: <LoginPage />,
+				action: loginAction,
 			},
 
 			{
 				path: "dashboard",
 				element: <DashboardPage />,
+				loader: dashboardLoader,
 				children: [
 					{
 						index: true,

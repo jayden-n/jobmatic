@@ -1,15 +1,21 @@
 /* eslint-disable react/prop-types */
-import { Outlet } from "react-router-dom";
+import { Outlet, useLoaderData, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { BigSidebar, Navbar, SmallSidebar } from "../components";
 import { createContext, useState } from "react";
-import { checkDefaultTheme } from "../utils/constants";
+import { checkDefaultTheme } from "../utils/constants/constants";
+import customFetch from "../utils/api/customFetch";
+import { toast } from "react-toastify";
 
 export const DashboardContext = createContext();
 
 const DashboardPage = () => {
+	// pre-fetching user data with loader:
+	const data = useLoaderData();
+
+	const navigate = useNavigate();
 	// temp
-	const user = { name: "jayden" };
+	const user = data?.user;
 	const [showSidebar, setShowSidebar] = useState(false);
 	const [isDarkTheme, setIsDarkTheme] = useState(checkDefaultTheme);
 
@@ -26,7 +32,11 @@ const DashboardPage = () => {
 	};
 
 	const logoutUser = async () => {
-		console.log("logout user");
+		navigate("/");
+
+		// clears out the cookie
+		await customFetch.get("/auth/logout");
+		toast.success("Logging out...");
 	};
 
 	return (
@@ -49,7 +59,8 @@ const DashboardPage = () => {
 						<Navbar />
 						<div className='dashboard-page'>
 							{/* Outlet for children */}
-							<Outlet />
+							{/* passing user context value to any children */}
+							<Outlet context={{ user }} />
 						</div>
 					</div>
 				</main>
