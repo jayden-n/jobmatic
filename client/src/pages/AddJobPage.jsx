@@ -5,6 +5,7 @@ import { FormRow, FormRowSelect } from "../components";
 import { JOB_STATUS, JOB_TYPE } from "../../../utils/constants.js";
 
 const AddJobPage = () => {
+	// getting user data thru Outlet in DashboardPage
 	const { user } = useOutletContext();
 	const navigation = useNavigation();
 	const isSubmitting = navigation.state === "submitting";

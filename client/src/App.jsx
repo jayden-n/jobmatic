@@ -18,8 +18,11 @@ import { checkDefaultTheme } from "./utils/constants/constants";
 // ===================== ACTIONS =====================
 import { registerAction } from "./utils/actions/registerAction";
 import { loginAction } from "./utils/actions/loginAction";
-import { dashboardLoader } from "./utils/loaders/dashboardLoader";
 import { addJobAction } from "./utils/actions/addJobAction";
+
+// ===================== LOADERS =====================
+import { dashboardLoader } from "./utils/loaders/dashboardLoader";
+import { allJobsLoader } from "./utils/loaders/allJobsLoader";
 
 // if this true, it will be added to all of the pages
 checkDefaultTheme();
@@ -67,6 +70,7 @@ const router = createBrowserRouter([
 					{
 						path: "all-jobs",
 						element: <AllJobsPage />,
+						loader: allJobsLoader,
 					},
 					{
 						path: "profile",

@@ -14,7 +14,9 @@ const DashboardPage = () => {
 	const data = useLoaderData();
 
 	const navigate = useNavigate();
+
 	// temp
+	// getting user data from database
 	const user = data?.user;
 	const [showSidebar, setShowSidebar] = useState(false);
 	const [isDarkTheme, setIsDarkTheme] = useState(checkDefaultTheme);
