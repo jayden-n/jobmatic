@@ -17,11 +17,18 @@ const SingleJob = ({
 	createdAt,
 	jobStatus,
 }) => {
+	// company first letter
+	const initials = company
+		.split(/\s|-/)
+		.map((word) => word.charAt(0).toUpperCase())
+		.join("");
+
+	// job date applied
 	const date = day(createdAt).format("MMMM D, YYYY");
 	return (
 		<Wrapper>
 			<header>
-				<div className='main-icon'>{company.charAt(0)}</div>
+				<div className='main-icon'>{initials}</div>
 				<div className='info'>
 					<h5>{position}</h5>
 					<p>{company}</p>
