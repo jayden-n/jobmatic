@@ -9,3 +9,4 @@ export { default as AdminPage } from "./AdminPage";
 export { default as AllJobsPage } from "./AllJobsPage";
 export { default as ProfilePage } from "./ProfilePage";
 export { default as StatsPage } from "./StatsPage";
+export { default as EditJobPage } from "./EditJobPage";
