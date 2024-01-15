@@ -5,7 +5,7 @@ import SingleJob from "./SingleJob";
 const JobsContainer = () => {
 	const { data } = useAllJobsContext();
 	const { jobs } = data;
-	console.log(jobs);
+	// console.log(jobs);
 
 	if (jobs.length === 0) {
 		return (

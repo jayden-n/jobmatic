@@ -12,6 +12,7 @@ import {
 	AllJobsPage,
 	ProfilePage,
 	StatsPage,
+	EditJobPage,
 } from "./pages";
 import { checkDefaultTheme } from "./utils/constants/constants";
 
@@ -23,6 +24,10 @@ import { addJobAction } from "./utils/actions/addJobAction";
 // ===================== LOADERS =====================
 import { dashboardLoader } from "./utils/loaders/dashboardLoader";
 import { allJobsLoader } from "./utils/loaders/allJobsLoader";
+
+// ===================== IN-COMPONENT ACTIONS/LOADERS =====================
+import { loader as editJobLoader } from "../src/pages/EditJobPage";
+import { action as editJobAction } from "../src/pages/EditJobPage";
 
 // if this true, it will be added to all of the pages
 checkDefaultTheme();
@@ -75,6 +80,14 @@ const router = createBrowserRouter([
 					{
 						path: "profile",
 						element: <ProfilePage />,
+					},
+					{
+						path: "edit-job/:id",
+						element: <EditJobPage />,
+						// get a specific job when load the page
+						loader: editJobLoader,
+						// make a patch request back to the server
+						action: editJobAction,
 					},
 				],
 			},
