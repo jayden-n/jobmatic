@@ -33,6 +33,7 @@ export const action = async ({ request, params }) => {
 };
 
 const EditJobPage = () => {
+	// getting job data from loader
 	const { job } = useLoaderData();
 	const navigation = useNavigation();
 	const isSubmitting = navigation.state === "submitting";

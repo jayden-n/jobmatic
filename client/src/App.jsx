@@ -28,6 +28,7 @@ import { allJobsLoader } from "./utils/loaders/allJobsLoader";
 // ===================== IN-COMPONENT ACTIONS/LOADERS =====================
 import { loader as editJobLoader } from "../src/pages/EditJobPage";
 import { action as editJobAction } from "../src/pages/EditJobPage";
+import { action as deleteJobAction } from "../src/pages/DeleteJobPage";
 
 // if this true, it will be added to all of the pages
 checkDefaultTheme();
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
 						loader: editJobLoader,
 						// make a patch request back to the server
 						action: editJobAction,
+					},
+					{
+						path: "delete-job/:id",
+						action: deleteJobAction,
 					},
 				],
 			},

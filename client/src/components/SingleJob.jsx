@@ -46,9 +46,9 @@ const SingleJob = ({
 				<footer className='actions'>
 					{/* go 1 level back => dashboard */}
 					<Link to={`../edit-job/${_id}`} className='btn edit-btn'>
-						Edit
+						Update
 					</Link>
-					<Form>
+					<Form method='post' action={`../delete-job/${_id}`}>
 						<button type='submit' className='btn delete-btn'>
 							Delete
 						</button>
