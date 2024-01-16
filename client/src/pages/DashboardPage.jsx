@@ -11,10 +11,8 @@ export const DashboardContext = createContext();
 const DashboardPage = () => {
 	// pre-fetching user data with loader:
 	const data = useLoaderData();
-
 	const navigate = useNavigate();
 
-	// temp
 	// getting user data from database
 	const user = data?.user;
 	const [showSidebar, setShowSidebar] = useState(false);
