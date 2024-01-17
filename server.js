@@ -11,13 +11,23 @@ import jobRouter from "./routes/jobRouter.js";
 import authRouter from "./routes/authRouter.js";
 import userRouter from "./routes/userRouter.js";
 
+// ================== PUBLIC ==================
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import path from "path";
+
 // ================== MIDDLEWARE ==================
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 import { authenticateUser } from "./middleware/authMiddleware.js";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 if (process.env.NODE_ENV === "development") {
 	app.use(morgan("dev"));
 }
+
+// point to public folder for static project img
+app.use(express.static(path.resolve(__dirname, "./public")));
 
 app.use(cookieParser());
 app.use(express.json());

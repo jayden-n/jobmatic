@@ -8,6 +8,7 @@ import customFetch from "../utils/api/customFetch";
 import { toast } from "react-toastify";
 
 export const DashboardContext = createContext();
+
 const DashboardPage = () => {
 	// pre-fetching user data with loader:
 	const data = useLoaderData();
