@@ -27,8 +27,10 @@ import { allJobsLoader } from "./utils/loaders/allJobsLoader";
 
 // ===================== IN-COMPONENT ACTIONS/LOADERS =====================
 import { loader as editJobLoader } from "../src/pages/EditJobPage";
+import { loader as adminLoader } from "./pages/AdminPage";
 import { action as editJobAction } from "../src/pages/EditJobPage";
 import { action as deleteJobAction } from "../src/pages/DeleteJobPage";
+import { action as profileAction } from "../src/pages/ProfilePage";
 
 // if this true, it will be added to all of the pages
 checkDefaultTheme();
@@ -72,6 +74,7 @@ const router = createBrowserRouter([
 					{
 						path: "admin",
 						element: <AdminPage />,
+						loader: adminLoader,
 					},
 					{
 						path: "all-jobs",
@@ -81,6 +84,7 @@ const router = createBrowserRouter([
 					{
 						path: "profile",
 						element: <ProfilePage />,
+						action: profileAction,
 					},
 					{
 						path: "edit-job/:id",

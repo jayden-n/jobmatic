@@ -239,6 +239,7 @@ button:disabled {
 	padding: 2rem 2.5rem;
 	margin: 3rem auto;
 }
+
 .form-label {
 	display: block;
 	font-size: var(--small-text);

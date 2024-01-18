@@ -8,15 +8,15 @@ import customFetch from "../utils/api/customFetch";
 import { toast } from "react-toastify";
 
 export const DashboardContext = createContext();
+
 const DashboardPage = () => {
 	// pre-fetching user data with loader:
 	const data = useLoaderData();
-
 	const navigate = useNavigate();
 
-	// temp
 	// getting user data from database
 	const user = data?.user;
+
 	const [showSidebar, setShowSidebar] = useState(false);
 	const [isDarkTheme, setIsDarkTheme] = useState(checkDefaultTheme);
 

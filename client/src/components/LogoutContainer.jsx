@@ -7,6 +7,7 @@ const LogoutContainer = () => {
 	const [showLogout, setShowLogout] = useState(false);
 	const { user, logoutUser } = useDashboardContext();
 
+	console.log(user.avatar);
 	return (
 		<Wrapper>
 			<button
@@ -14,8 +15,12 @@ const LogoutContainer = () => {
 				className='btn logout-btn'
 				onClick={() => setShowLogout(!showLogout)}
 			>
-				<FaUserCircle />
-				{user?.name}
+				{user.avatar ? (
+					<img src={user.avatar} alt='avatar' className='img' />
+				) : (
+					<FaUserCircle />
+				)}
+				{user?.name} {user?.lastName}
 				<FaCaretDown />
 			</button>
 
