@@ -10,6 +10,7 @@ import {
 	validateJobInput,
 	validateIdParam,
 } from "../middleware/validationMiddleware.js";
+import { checkForTestUser } from "../middleware/authMiddleware.js";
 
 const router = Router();
 
@@ -17,11 +18,14 @@ const router = Router();
 // router.post("/", createJob);
 
 // Pointing to the same api
-router.route("/").get(getAllJobs).post(validateJobInput, createJob);
+router
+	.route("/")
+	.get(getAllJobs)
+	.post(checkForTestUser, validateJobInput, createJob);
 router
 	.route("/:id")
 	.get(validateIdParam, getSingleJob)
-	.patch(validateJobInput, validateIdParam, updateJob)
-	.delete(validateIdParam, deleteJob);
+	.patch(checkForTestUser, validateJobInput, validateIdParam, updateJob)
+	.delete(checkForTestUser, validateIdParam, deleteJob);
 
 export default router;

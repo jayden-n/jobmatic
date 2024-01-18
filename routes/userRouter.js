@@ -5,7 +5,10 @@ import {
 	updateUser,
 } from "../controllers/userController.js";
 import { validateUpdateUserInput } from "../middleware/validationMiddleware.js";
-import { authorizedPermissions } from "../middleware/authMiddleware.js";
+import {
+	authorizedPermissions,
+	checkForTestUser,
+} from "../middleware/authMiddleware.js";
 import upload from "../middleware/multerMiddleware.js";
 
 const router = Router();
@@ -20,6 +23,11 @@ router
 	.route("/update-user")
 	// must come before validation
 	// upload only single file thru a valid 'avatar' name
-	.patch(upload.single("avatar"), validateUpdateUserInput, updateUser);
+	.patch(
+		checkForTestUser,
+		upload.single("avatar"),
+		validateUpdateUserInput,
+		updateUser,
+	);
 
 export default router;
