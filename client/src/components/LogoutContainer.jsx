@@ -7,7 +7,7 @@ const LogoutContainer = () => {
 	const [showLogout, setShowLogout] = useState(false);
 	const { user, logoutUser } = useDashboardContext();
 
-	console.log(user.avatar);
+	// console.log(user.avatar);
 	return (
 		<Wrapper>
 			<button
