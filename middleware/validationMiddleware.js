@@ -60,22 +60,22 @@ export const validateIdParam = withValidationErrors([
 		.custom(async (value, { req }) => {
 			const isValidMongoId = mongoose.Types.ObjectId.isValid(value);
 			if (!isValidMongoId) {
-				throw new BadRequestError("invalid MongoDB id");
+				throw new BadRequestError("Invalid MongoDB id");
 			}
 			const job = await Job.findById(value);
 
 			if (!job) {
-				throw new NotFoundError(`no job with id ${value}`);
+				throw new NotFoundError(`No job with id ${value}`);
 			}
 
 			const isAdmin = req.user.role === "admin";
 			const isOwner = req.user.userId === job.createdBy.toString();
 
 			if (!isAdmin && isOwner) {
-				throw new UnauthorizedError("not authorized to access this route");
+				throw new UnauthorizedError("Not authorized to access this route");
 			}
 		})
-		.withMessage("invalid MongoDB id"),
+		.withMessage("Invalid MongoDB id"),
 ]);
 
 // ================== REGISTER VALIDATION ==================
