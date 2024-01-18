@@ -1,6 +1,28 @@
+/* eslint-disable react-refresh/only-export-components */
 import { Form, useNavigation, useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 import { FormRow } from "../components";
+import { toast } from "react-toastify";
+import customFetch from "../utils/api/customFetch";
+
+export const action = async ({ request }) => {
+	const formData = await request.formData();
+	const file = formData.get("avatar");
+
+	// check if image file is NOT larger than 0.5 MB
+	if (file && file.size > 500000) {
+		toast.error("Image size too large");
+		return null;
+	}
+
+	try {
+		await customFetch.patch("users/update-user", formData);
+		toast.success("Profile updated successfully!");
+	} catch (error) {
+		toast.error(error?.response?.data?.msg);
+	}
+	return null;
+};
 
 const ProfilePage = () => {
 	const { user } = useOutletContext();
