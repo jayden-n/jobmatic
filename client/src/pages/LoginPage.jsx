@@ -1,12 +1,37 @@
-import { Form, Link, useNavigation, useActionData } from "react-router-dom";
+import {
+	Form,
+	Link,
+	useNavigation,
+	useActionData,
+	useNavigate,
+} from "react-router-dom";
 import { FormRow, Logo } from "../components";
 import styled from "styled-components";
+import customFetch from "../utils/api/customFetch";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
 	const navigation = useNavigation();
 	const isSubmitting = navigation.state === "submitting";
 
 	const errors = useActionData();
+
+	const navigate = useNavigate();
+
+	// for demo user purpose
+	const loginDemoUser = async () => {
+		const demoData = {
+			email: "test@test.com",
+			password: "secret123",
+		};
+		try {
+			await customFetch.post("/auth/login", demoData);
+			toast.success("Demo user is in the building!");
+			navigate("/dashboard");
+		} catch (error) {
+			toast.error(error?.response?.data?.msg);
+		}
+	};
 
 	return (
 		<Wrapper>
@@ -21,7 +46,7 @@ const LoginPage = () => {
 					{isSubmitting ? "submitting..." : "submit"}
 				</button>
 
-				<button type='submit' className='btn btn-block'>
+				<button type='submit' className='btn btn-block' onClick={loginDemoUser}>
 					explore the app
 				</button>
 
