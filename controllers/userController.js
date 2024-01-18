@@ -17,6 +17,8 @@ export const getApplicationStats = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
+	console.log(req.file);
+
 	const obj = { ...req.body };
 	delete obj.password;
 	console.log(obj);
