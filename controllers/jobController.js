@@ -44,10 +44,33 @@ export const deleteJob = async (req, res) => {
 };
 
 export const showStats = async (req, res) => {
+	let stats = await Job.aggregate([
+		// Filters the jobs so that only the ones created by the user specified by req.user.userId are passed to the next stage.
+		// The "new mongoose.Types.ObjectId(req.user.userId)" part converts req.user.userId into an ObjectId (which is the format MongoDB uses for ids).
+		{ $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } },
+
+		// Groups the remaining jobs by their status (the jobStatus field).
+		// For each group, it calculates the count of jobs by adding 1 for each job ({ $sum: 1 }), and stores this in a field called count.
+		{ $group: { _id: '$jobStatus', count: { $sum: 1 } } },
+	]);
+
+	// reduce will return an obj
+	stats = stats.reduce((acc, cur) => {
+		const { _id: title, count } = cur;
+
+		// will have dynamic props from _id: '$jobStatus'
+		// return: { declined: 35, interview: 29, pending: 36 }
+		acc[title] = count;
+		return acc;
+	}, {});
+
+	console.log(stats);
+
 	const defaultStats = {
-		pending: 22,
-		interview: 11,
-		declined: 4,
+		// if new user just signed up, they will get 0 jobs
+		pending: stats.pending || 0,
+		interview: stats.interview || 0,
+		declined: stats.declined || 0,
 	};
 
 	let monthlyApplications = [
