@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { useAllJobsContext } from "../hooks/useAllJobsContext";
-import SingleJob from "./SingleJob";
+import styled from 'styled-components';
+import { useAllJobsContext } from '../hooks/useAllJobsContext';
+import SingleJob from './SingleJob';
 
 const JobsContainer = () => {
 	const { data } = useAllJobsContext();
@@ -17,7 +17,7 @@ const JobsContainer = () => {
 
 	return (
 		<Wrapper>
-			<div className='jobs'>
+			<div className="jobs">
 				{jobs.map((job) => {
 					return <SingleJob key={job._id} {...job} />;
 				})}

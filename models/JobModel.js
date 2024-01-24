@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import { JOB_STATUS, JOB_TYPE } from "../utils/constants.js";
+import mongoose from 'mongoose';
+import { JOB_STATUS, JOB_TYPE } from '../utils/constants.js';
 
 const JobSchema = new mongoose.Schema(
 	{
@@ -18,16 +18,16 @@ const JobSchema = new mongoose.Schema(
 		},
 		jobLocation: {
 			type: String,
-			default: "earth",
+			default: 'earth',
 		},
 
 		// will be tied to users
 		createdBy: {
 			type: mongoose.Types.ObjectId,
-			ref: "User",
+			ref: 'User',
 		},
 	},
 	{ timestamps: true },
 );
 
-export default mongoose.model("Job", JobSchema);
+export default mongoose.model('Job', JobSchema);

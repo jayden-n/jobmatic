@@ -1,10 +1,10 @@
-import { StatusCodes } from "http-status-codes";
+import { StatusCodes } from 'http-status-codes';
 
-import User from "../models/UserModel.js";
-import Job from "../models/JobModel.js";
+import User from '../models/UserModel.js';
+import Job from '../models/JobModel.js';
 
-import cloudinary from "cloudinary";
-import fs from "node:fs/promises";
+import cloudinary from 'cloudinary';
+import fs from 'node:fs/promises';
 
 export const getCurrentUser = async (req, res) => {
 	const user = await User.findOne({ _id: req.user.userId });
@@ -40,5 +40,5 @@ export const updateUser = async (req, res) => {
 		await cloudinary.v2.uploader.destroy(oldUpdatedUser.avatarPublicId);
 	}
 
-	res.status(StatusCodes.OK).json({ msg: "update user " });
+	res.status(StatusCodes.OK).json({ msg: 'update user ' });
 };

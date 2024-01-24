@@ -43,7 +43,9 @@ export const deleteJob = async (req, res) => {
 	res.status(StatusCodes.OK).json({ msg: 'job deleted', job: removedJob });
 };
 
+//  ================== SHOW STATS ==================
 export const showStats = async (req, res) => {
+	// ========= Jobs stats =========
 	let stats = await Job.aggregate([
 		// Filters the jobs so that only the ones created by the user specified by req.user.userId are passed to the next stage.
 		// The "new mongoose.Types.ObjectId(req.user.userId)" part converts req.user.userId into an ObjectId (which is the format MongoDB uses for ids).
@@ -55,7 +57,9 @@ export const showStats = async (req, res) => {
 	]);
 
 	// reduce will return an obj
+	// "acc" will be what you return
 	stats = stats.reduce((acc, cur) => {
+		// current values
 		const { _id: title, count } = cur;
 
 		// will have dynamic props from _id: '$jobStatus'
@@ -64,8 +68,6 @@ export const showStats = async (req, res) => {
 		return acc;
 	}, {});
 
-	console.log(stats);
-
 	const defaultStats = {
 		// if new user just signed up, they will get 0 jobs
 		pending: stats.pending || 0,
@@ -73,20 +75,32 @@ export const showStats = async (req, res) => {
 		declined: stats.declined || 0,
 	};
 
-	let monthlyApplications = [
+	// ========= Applications per month =========
+	let monthlyApplications = await Job.aggregate([
+		{ $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } },
 		{
-			date: 'May 23',
-			count: 12,
+			$group: {
+				// display the month / year thru $createdAt
+				_id: { year: { $year: '$createdAt' }, month: { $month: '$createdAt' } },
+				count: { $sum: 1 },
+			},
 		},
-		{
-			date: 'June 23',
-			count: 9,
-		},
-		{
-			date: 'July 23',
-			count: 3,
-		},
-	];
+	]);
+
+	// let monthlyApplications = [
+	// 	{
+	// 		date: 'May 23',
+	// 		count: 12,
+	// 	},
+	// 	{
+	// 		date: 'June 23',
+	// 		count: 9,
+	// 	},
+	// 	{
+	// 		date: 'July 23',
+	// 		count: 3,
+	// 	},
+	// ];
 
 	res.status(StatusCodes.OK).json({ defaultStats, monthlyApplications });
 };
