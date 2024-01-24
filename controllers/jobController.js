@@ -84,7 +84,23 @@ export const showStats = async (req, res) => {
 				_id: { year: { $year: '$createdAt' }, month: { $month: '$createdAt' } },
 				count: { $sum: 1 },
 			},
+			// ==> {
+			//    "_id": {
+			//      "year": 2023,
+			//      "month": 12
+			//    },
+			//    "count": 12
+			//  },
 		},
+		{
+			// sort out the latest month first
+			$sort: {
+				// starts with the biggest value
+				'_id.year': -1,
+				'_id.month': -1,
+			},
+		},
+		{ $limit: 6 },
 	]);
 
 	// let monthlyApplications = [
