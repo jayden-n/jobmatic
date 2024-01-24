@@ -16,6 +16,7 @@ const StatItem = ({ count, title, icon, color, bcg }) => {
 
 const Wrapper = styled.article`
 	padding: 2rem;
+	border-radius: var(--border-radius);
 	background: var(--background-secondary-color);
 	/* passing props thru function */
 	border-bottom: 5px solid ${(props) => props.color};
