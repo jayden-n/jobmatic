@@ -103,6 +103,32 @@ export const showStats = async (req, res) => {
 		{ $limit: 6 },
 	]);
 
+	monthlyApplications = monthlyApplications.map((item) => {
+		const monthNames = [
+			'Jan',
+			'Feb',
+			'Mar',
+			'Apr',
+			'May',
+			'Jun',
+			'Jul',
+			'Aug',
+			'Sep',
+			'Oct',
+			'Nov',
+			'Dec',
+		];
+
+		const date = `${monthNames[item._id.month - 1]} ${item._id.year}`;
+
+		return {
+			date,
+			count: item.count,
+		};
+	});
+	// console.log(monthlyApplications);
+
+	// ========= dummy data =========
 	// let monthlyApplications = [
 	// 	{
 	// 		date: 'May 23',
