@@ -1,21 +1,22 @@
 /* eslint-disable react/prop-types */
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StatItem = ({ count, title, icon, color, bcg }) => {
 	return (
 		<Wrapper color={color} bcg={bcg}>
 			<header>
-				<span className='count'>{count}</span>
-				<span className='icon'>{icon}</span>
+				<span className="count">{count}</span>
+				<span className="icon">{icon}</span>
 			</header>
 
-			<h5 className='title'>{title}</h5>
+			<h5 className="title">{title}</h5>
 		</Wrapper>
 	);
 };
 
 const Wrapper = styled.article`
 	padding: 2rem;
+	border-radius: var(--border-radius);
 	background: var(--background-secondary-color);
 	/* passing props thru function */
 	border-bottom: 5px solid ${(props) => props.color};

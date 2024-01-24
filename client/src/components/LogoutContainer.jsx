@@ -1,7 +1,7 @@
-import { FaUserCircle, FaCaretDown } from "react-icons/fa";
-import { useDashboardContext } from "../hooks/useDashboardContext";
-import { useState } from "react";
-import styled from "styled-components";
+import { FaUserCircle, FaCaretDown } from 'react-icons/fa';
+import { useDashboardContext } from '../hooks/useDashboardContext';
+import { useState } from 'react';
+import styled from 'styled-components';
 
 const LogoutContainer = () => {
 	const [showLogout, setShowLogout] = useState(false);
@@ -11,12 +11,13 @@ const LogoutContainer = () => {
 	return (
 		<Wrapper>
 			<button
-				type='button'
-				className='btn logout-btn'
+				type="button"
+				className="btn logout-btn"
 				onClick={() => setShowLogout(!showLogout)}
 			>
+				{/* NOTE: fetch from server: {user.firstName} {user.lastName} */}
 				{user.avatar ? (
-					<img src={user.avatar} alt='avatar' className='img' />
+					<img src={user.avatar} alt="avatar" className="img" />
 				) : (
 					<FaUserCircle />
 				)}
@@ -24,8 +25,9 @@ const LogoutContainer = () => {
 				<FaCaretDown />
 			</button>
 
-			<div className={showLogout ? "dropdown show-dropdown" : "dropdown"}>
-				<button type='button' className='dropdown-btn' onClick={logoutUser}>
+			{/* button toggle */}
+			<div className={showLogout ? 'dropdown show-dropdown' : 'dropdown'}>
+				<button type="button" className="dropdown-btn" onClick={logoutUser}>
 					logout
 				</button>
 			</div>

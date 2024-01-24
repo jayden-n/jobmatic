@@ -1,5 +1,5 @@
-import "./index.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import './index.css';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import {
 	HomePage,
 	LandingPage,
@@ -13,31 +13,32 @@ import {
 	ProfilePage,
 	StatsPage,
 	EditJobPage,
-} from "./pages";
-import { checkDefaultTheme } from "./utils/constants/constants";
+} from './pages';
+import { checkDefaultTheme } from './utils/constants/constants';
 
 // ===================== ACTIONS =====================
-import { registerAction } from "./utils/actions/registerAction";
-import { loginAction } from "./utils/actions/loginAction";
-import { addJobAction } from "./utils/actions/addJobAction";
+import { registerAction } from './utils/actions/registerAction';
+import { loginAction } from './utils/actions/loginAction';
+import { addJobAction } from './utils/actions/addJobAction';
 
 // ===================== LOADERS =====================
-import { dashboardLoader } from "./utils/loaders/dashboardLoader";
-import { allJobsLoader } from "./utils/loaders/allJobsLoader";
+import { dashboardLoader } from './utils/loaders/dashboardLoader';
+import { allJobsLoader } from './utils/loaders/allJobsLoader';
 
 // ===================== IN-COMPONENT ACTIONS/LOADERS =====================
-import { loader as editJobLoader } from "../src/pages/EditJobPage";
-import { loader as adminLoader } from "./pages/AdminPage";
-import { action as editJobAction } from "../src/pages/EditJobPage";
-import { action as deleteJobAction } from "../src/pages/DeleteJobPage";
-import { action as profileAction } from "../src/pages/ProfilePage";
+import { loader as editJobLoader } from '../src/pages/EditJobPage';
+import { loader as adminLoader } from './pages/AdminPage';
+import { loader as statsLoader } from './pages/StatsPage';
+import { action as editJobAction } from '../src/pages/EditJobPage';
+import { action as deleteJobAction } from '../src/pages/DeleteJobPage';
+import { action as profileAction } from '../src/pages/ProfilePage';
 
 // if this true, it will be added to all of the pages
 checkDefaultTheme();
 
 const router = createBrowserRouter([
 	{
-		path: "/",
+		path: '/',
 		element: <HomePage />,
 		errorElement: <ErrorPage />,
 		children: [
@@ -46,19 +47,19 @@ const router = createBrowserRouter([
 				element: <LandingPage />,
 			},
 			{
-				path: "register",
+				path: 'register',
 				element: <RegisterPage />,
 				action: registerAction,
 			},
 
 			{
-				path: "login",
+				path: 'login',
 				element: <LoginPage />,
 				action: loginAction,
 			},
 
 			{
-				path: "dashboard",
+				path: 'dashboard',
 				element: <DashboardPage />,
 				loader: dashboardLoader,
 				children: [
@@ -68,26 +69,27 @@ const router = createBrowserRouter([
 						action: addJobAction,
 					},
 					{
-						path: "stats",
+						path: 'stats',
 						element: <StatsPage />,
+						loader: statsLoader,
 					},
 					{
-						path: "admin",
+						path: 'admin',
 						element: <AdminPage />,
 						loader: adminLoader,
 					},
 					{
-						path: "all-jobs",
+						path: 'all-jobs',
 						element: <AllJobsPage />,
 						loader: allJobsLoader,
 					},
 					{
-						path: "profile",
+						path: 'profile',
 						element: <ProfilePage />,
 						action: profileAction,
 					},
 					{
-						path: "edit-job/:id",
+						path: 'edit-job/:id',
 						element: <EditJobPage />,
 						// get a specific job when load the page
 						loader: editJobLoader,
@@ -95,7 +97,7 @@ const router = createBrowserRouter([
 						action: editJobAction,
 					},
 					{
-						path: "delete-job/:id",
+						path: 'delete-job/:id',
 						action: deleteJobAction,
 					},
 				],

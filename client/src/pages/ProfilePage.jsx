@@ -1,23 +1,23 @@
 /* eslint-disable react-refresh/only-export-components */
-import { Form, useNavigation, useOutletContext } from "react-router-dom";
-import styled from "styled-components";
-import { FormRow } from "../components";
-import { toast } from "react-toastify";
-import customFetch from "../utils/api/customFetch";
+import { Form, useNavigation, useOutletContext } from 'react-router-dom';
+import styled from 'styled-components';
+import { FormRow } from '../components';
+import { toast } from 'react-toastify';
+import customFetch from '../utils/api/customFetch';
 
 export const action = async ({ request }) => {
 	const formData = await request.formData();
-	const file = formData.get("avatar");
+	const file = formData.get('avatar');
 
 	// check if image file is NOT larger than 0.5 MB
 	if (file && file.size > 500000) {
-		toast.error("Image size too large");
+		toast.error('Image size too large');
 		return null;
 	}
 
 	try {
-		await customFetch.patch("users/update-user", formData);
-		toast.success("Profile updated successfully!");
+		await customFetch.patch('users/update-user', formData);
+		toast.success('Profile updated successfully!');
 	} catch (error) {
 		toast.error(error?.response?.data?.msg);
 	}
@@ -29,42 +29,42 @@ const ProfilePage = () => {
 	const { email, lastName, location, name, role } = user;
 
 	const navigation = useNavigation();
-	const isSubmitting = navigation.state === "submitting";
+	const isSubmitting = navigation.state === 'submitting';
 
 	return (
 		<Wrapper>
-			<Form method='post' className='form' encType='multipart/form-data'>
-				<h4 className='form-title'>profile</h4>
-				<div className='form-center'>
+			<Form method="post" className="form" encType="multipart/form-data">
+				<h4 className="form-title">profile</h4>
+				<div className="form-center">
 					{/* file input */}
-					<div className='form-row'>
-						<label htmlFor='avatar' className='form-label'>
+					<div className="form-row">
+						<label htmlFor="avatar" className="form-label">
 							Select an image file (max 0.5 MB)
 						</label>
 						<input
-							type='file'
-							id='avatar'
-							name='avatar'
-							className='form-input'
+							type="file"
+							id="avatar"
+							name="avatar"
+							className="form-input"
 							// accept any image file
-							accept='image/*'
+							accept="image/*"
 						/>
 					</div>
-					<FormRow type='text' name='name' defaultValue={name} />
+					<FormRow type="text" name="name" defaultValue={name} />
 					<FormRow
-						type='text'
-						name='lastName'
-						labelText='last Name'
+						type="text"
+						name="lastName"
+						labelText="last Name"
 						defaultValue={lastName}
 					/>
-					<FormRow type='email' name='email' defaultValue={email} />
-					<FormRow type='text' name='location' defaultValue={location} />
+					<FormRow type="email" name="email" defaultValue={email} />
+					<FormRow type="text" name="location" defaultValue={location} />
 					<button
-						type='submit'
+						type="submit"
 						disabled={isSubmitting}
-						className='btn btn-block form-btn'
+						className="btn btn-block form-btn"
 					>
-						{isSubmitting ? "submitting..." : "submit"}
+						{isSubmitting ? 'submitting...' : 'submit'}
 					</button>
 				</div>
 			</Form>

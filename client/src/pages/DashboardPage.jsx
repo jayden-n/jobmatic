@@ -52,13 +52,13 @@ const DashboardPage = () => {
 			}}
 		>
 			<Wrapper>
-				<main className='dashboard'>
+				<main className="dashboard">
 					<SmallSidebar />
 					<BigSidebar />
 
 					<div>
 						<Navbar />
-						<div className='dashboard-page'>
+						<div className="dashboard-page">
 							{/* Outlet for children */}
 							{/* passing user context value to any children */}
 							<Outlet context={{ user }} />
