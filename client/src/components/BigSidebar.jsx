@@ -1,7 +1,7 @@
-import NavLinks from "./NavLinks";
-import Logo from "./Logo";
-import { useDashboardContext } from "../hooks/useDashboardContext";
-import styled from "styled-components";
+import NavLinks from './NavLinks';
+import Logo from './Logo';
+import { useDashboardContext } from '../hooks/useDashboardContext';
+import styled from 'styled-components';
 
 const BigSidebar = () => {
 	const { showSidebar } = useDashboardContext();
@@ -10,10 +10,10 @@ const BigSidebar = () => {
 		<Wrapper>
 			<div
 				className={
-					showSidebar ? "sidebar-container" : "sidebar-container show-sidebar"
+					showSidebar ? 'sidebar-container' : 'sidebar-container show-sidebar'
 				}
 			>
-				<div className='content'>
+				<div className="content">
 					<header>
 						<Logo />
 					</header>
@@ -32,8 +32,8 @@ const Wrapper = styled.aside`
 			background: var(--background-secondary-color);
 			min-height: 100vh;
 			height: 100%;
-			width: 250px;
-			margin-left: -250px;
+			width: 270px;
+			margin-left: -270px;
 			transition: margin-left 0.3s ease-in-out;
 		}
 		.content {
@@ -65,7 +65,7 @@ const Wrapper = styled.aside`
 			transition: padding-left 0.3s ease-in-out;
 		}
 		.nav-link:hover {
-			padding-left: 3rem;
+			padding-left: 4rem;
 			color: var(--primary-500);
 			transition: var(--transition);
 		}

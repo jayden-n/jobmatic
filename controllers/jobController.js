@@ -6,8 +6,23 @@ import dayjs from 'dayjs';
 
 // ================== GET ALL JOBS ==================
 export const getAllJobs = async (req, res) => {
-	// only provide jobs to the specific user
-	const jobs = await Job.find({ createdBy: req.user.userId });
+	const { search } = req.query;
+	const queryObject = {
+		createdBy: req.user.userId,
+	};
+	// check if user input anything in query string
+	if (search) {
+		queryObject.$or = [
+			// will search for both position & company, dont care about word-casing
+			{
+				position: { $regex: search, $options: 'i' },
+				company: { $regex: search, $options: 'i' },
+			},
+		];
+	}
+
+	console.log(req.query);
+	const jobs = await Job.find(queryObject);
 	res.status(StatusCodes.OK).json({ jobs });
 };
 
@@ -103,29 +118,31 @@ export const showStats = async (req, res) => {
 		{ $limit: 6 },
 	]);
 
-	monthlyApplications = monthlyApplications.map((item) => {
-		const monthNames = [
-			'Jan',
-			'Feb',
-			'Mar',
-			'Apr',
-			'May',
-			'Jun',
-			'Jul',
-			'Aug',
-			'Sep',
-			'Oct',
-			'Nov',
-			'Dec',
-		];
+	monthlyApplications = monthlyApplications
+		.map((item) => {
+			const monthNames = [
+				'Jan',
+				'Feb',
+				'Mar',
+				'Apr',
+				'May',
+				'Jun',
+				'Jul',
+				'Aug',
+				'Sep',
+				'Oct',
+				'Nov',
+				'Dec',
+			];
 
-		const date = `${monthNames[item._id.month - 1]} ${item._id.year}`;
+			const date = `${monthNames[item._id.month - 1]} ${item._id.year}`;
 
-		return {
-			date,
-			count: item.count,
-		};
-	});
+			return {
+				date,
+				count: item.count,
+			};
+		})
+		.reverse();
 	// console.log(monthlyApplications);
 
 	// ========= dummy data =========
