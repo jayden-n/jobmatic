@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-const FormRow = ({ type, name, labelText, defaultValue }) => {
+const FormRow = ({ type, name, labelText, defaultValue, onChange }) => {
 	return (
-		<div className='form-row'>
-			<label htmlFor={name} className='form-label'>
+		<div className="form-row">
+			<label htmlFor={name} className="form-label">
 				{/* to avoid camel case text value */}
 				{labelText || name}
 			</label>
@@ -10,8 +10,9 @@ const FormRow = ({ type, name, labelText, defaultValue }) => {
 				type={type}
 				id={name}
 				name={name}
-				className='form-input'
-				defaultValue={defaultValue || ""}
+				className="form-input"
+				onChange={onChange}
+				defaultValue={defaultValue || ''}
 				required
 			/>
 		</div>

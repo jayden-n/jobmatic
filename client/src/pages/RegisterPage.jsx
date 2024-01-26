@@ -1,38 +1,38 @@
-import { Form, useNavigation, Link } from "react-router-dom";
-import styled from "styled-components";
-import { FormRow, Logo } from "../components";
+import { Form, useNavigation, Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { FormRow, Logo } from '../components';
 
 const RegisterPage = () => {
 	// checking state for submit button
 	const navigation = useNavigation();
-	const isSubmitting = navigation.state === "submitting";
+	const isSubmitting = navigation.state === 'submitting';
 
 	return (
 		<Wrapper>
-			<Form method='post' className='form'>
-				<div className='logo'>
+			<Form method="post" className="form">
+				<div className="logo">
 					<Logo />
 				</div>
 				<h4>Register</h4>
 
-				<FormRow type='text' name='name' defaultValue='jayden' />
+				<FormRow type="text" name="name" defaultValue="jayden" />
 				<FormRow
-					type='text'
-					name='lastName'
-					labelText='Last Name'
-					defaultValue='nguyen'
+					type="text"
+					name="lastName"
+					labelText="Last Name"
+					defaultValue="nguyen"
 				/>
-				<FormRow type='text' name='location' defaultValue='earth' />
-				<FormRow type='email' name='email' defaultValue='jayden@gmail.com' />
-				<FormRow type='password' name='password' defaultValue='secret123' />
+				<FormRow type="text" name="location" defaultValue="earth" />
+				<FormRow type="email" name="email" defaultValue="jayden@gmail.com" />
+				<FormRow type="password" name="password" defaultValue="secret123" />
 
-				<button type='submit' className='btn btn-block' disabled={isSubmitting}>
-					{isSubmitting ? "submitting..." : "submit"}
+				<button type="submit" className="btn btn-block" disabled={isSubmitting}>
+					{isSubmitting ? 'submitting...' : 'submit'}
 				</button>
 
 				<p>
 					Already a member?
-					<Link to='/login' className='member-btn'>
+					<Link to="/login" className="member-btn">
 						Login
 					</Link>
 				</p>
