@@ -13,7 +13,7 @@ export const allJobsLoader = async ({ request }) => {
 			// pass in the params thru axios
 			params,
 		});
-		return data;
+		return { data, searchValues: { ...params } };
 	} catch (error) {
 		toast.error(error?.response?.data?.msg);
 		return error;

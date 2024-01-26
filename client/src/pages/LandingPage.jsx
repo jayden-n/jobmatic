@@ -1,18 +1,18 @@
-import styled from "styled-components";
-import main from "../assets/images/main.svg";
-import { Link } from "react-router-dom";
-import { Logo } from "../components";
+import styled from 'styled-components';
+import main from '../assets/images/main.svg';
+import { Link } from 'react-router-dom';
+import { Logo } from '../components';
 
 const LandingPage = () => {
 	return (
 		<Wrapper>
 			<nav>
-				<Link to='/'>
+				<Link to="/">
 					<Logo />
 				</Link>
 			</nav>
-			<div className='container page'>
-				<div className='info'>
+			<div className="container page">
+				<div className="info">
 					<h1>
 						Job <span>Tracking</span> App
 					</h1>
@@ -22,15 +22,15 @@ const LandingPage = () => {
 						voluptatibus nemo nesciunt iure pariatur deleniti aut autem.
 						Quibusdam, totam quia.
 					</p>
-					<Link to='/register' className='btn register-link'>
+					<Link to="/register" className="btn register-link">
 						Register
 					</Link>
-					<Link to='/login' className='btn'>
+					<Link to="/login" className="btn">
 						Login / Demo Use
 					</Link>
 				</div>
 
-				<img src={main} alt='landing image' className='img main-img' />
+				<img src={main} alt="landing image" className="img main-img" />
 			</div>
 		</Wrapper>
 	);
