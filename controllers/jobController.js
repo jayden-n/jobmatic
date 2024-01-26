@@ -18,10 +18,10 @@ export const getAllJobs = async (req, res) => {
 			// will search for both position & company, dont care about word-casing
 			{
 				position: { $regex: search, $options: 'i' },
-				company: { $regex: search, $options: 'i' },
 			},
 		];
 	}
+	// company: { $regex: search, $options: 'i' },
 	if (jobStatus && jobStatus !== 'all') {
 		queryObject.jobStatus = jobStatus;
 	}

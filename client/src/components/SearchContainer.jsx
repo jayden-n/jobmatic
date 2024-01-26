@@ -36,6 +36,7 @@ const SearchContainer = () => {
 				<div className="form-center">
 					<FormRow
 						type="search"
+						labelText="search for a position"
 						name="search"
 						defaultValue={search}
 						onChange={debounce((form) => {
