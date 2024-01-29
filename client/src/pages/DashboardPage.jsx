@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-import { Outlet, useLoaderData, useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import { BigSidebar, Navbar, SmallSidebar } from "../components";
-import { createContext, useState } from "react";
-import { checkDefaultTheme } from "../utils/constants/constants";
-import customFetch from "../utils/api/customFetch";
-import { toast } from "react-toastify";
+import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { BigSidebar, Navbar, SmallSidebar } from '../components';
+import { createContext, useState } from 'react';
+import { checkDefaultTheme } from '../utils/constants/constants';
+import customFetch from '../utils/api/customFetch';
+import { toast } from 'react-toastify';
 
 export const DashboardContext = createContext();
 
@@ -24,20 +24,20 @@ const DashboardPage = () => {
 		const newDarkTheme = !isDarkTheme;
 		setIsDarkTheme(newDarkTheme);
 
-		document.body.classList.toggle("dark-theme", newDarkTheme);
-		localStorage.setItem("darkTheme", newDarkTheme);
+		document.body.classList.toggle('dark-theme', newDarkTheme);
+		localStorage.setItem('darkTheme', newDarkTheme);
 	};
 
 	const toggleSidebar = () => {
 		setShowSidebar(!showSidebar);
 	};
 
-	const logoutUser = async () => {
-		navigate("/");
+	const onLogoutUser = async () => {
+		navigate('/');
 
 		// clears out the cookie
-		await customFetch.get("/auth/logout");
-		toast.success("Logging out...");
+		await customFetch.get('/auth/logout');
+		toast.success('Logged out successfully!');
 	};
 
 	return (
@@ -48,7 +48,7 @@ const DashboardPage = () => {
 				isDarkTheme,
 				toggleDarkTheme,
 				toggleSidebar,
-				logoutUser,
+				onLogoutUser,
 			}}
 		>
 			<Wrapper>

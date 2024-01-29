@@ -32,8 +32,8 @@ const Wrapper = styled.aside`
 			background: var(--background-secondary-color);
 			min-height: 100vh;
 			height: 100%;
-			width: 270px;
-			margin-left: -270px;
+			width: 280px;
+			margin-left: -280px;
 			transition: margin-left 0.3s ease-in-out;
 		}
 		.content {
@@ -59,13 +59,18 @@ const Wrapper = styled.aside`
 			display: flex;
 			align-items: center;
 			color: var(--text-secondary-color);
-			padding: 1rem 0;
+			padding: 1.5rem 0;
 			padding-left: 2.5rem;
 			text-transform: capitalize;
 			transition: padding-left 0.3s ease-in-out;
+			border-bottom-right-radius: 9999px;
+			border-top-right-radius: 9999px;
 		}
 		.nav-link:hover {
-			padding-left: 4rem;
+			padding-left: 3.5rem;
+			border-bottom-right-radius: 9999px;
+			border-top-right-radius: 9999px;
+			background: var(--background-color);
 			color: var(--primary-500);
 			transition: var(--transition);
 		}
@@ -77,6 +82,7 @@ const Wrapper = styled.aside`
 		}
 		.active {
 			color: var(--primary-500);
+			background: var(--background-color);
 		}
 		.pending {
 			background: var(--background-color);

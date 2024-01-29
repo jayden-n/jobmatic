@@ -26,7 +26,7 @@ export const action = async ({ request }) => {
 
 const ProfilePage = () => {
 	const { user } = useOutletContext();
-	const { email, lastName, location, name, role } = user;
+	const { email, lastName, location, name } = user;
 
 	const navigation = useNavigation();
 	const isSubmitting = navigation.state === 'submitting';

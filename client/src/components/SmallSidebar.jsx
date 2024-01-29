@@ -79,12 +79,21 @@ const Wrapper = styled.aside`
 		display: flex;
 		align-items: center;
 		color: var(--text-secondary-color);
-		padding: 1rem 0;
+		padding: 1.5rem 0;
+		padding-left: 2.5rem;
 		text-transform: capitalize;
-		transition: var(--transition);
+		transition: padding-left 0.3s ease-in-out;
+		width: 280px;
+		border-bottom-right-radius: 9999px;
+		border-top-right-radius: 9999px;
 	}
 	.nav-link:hover {
+		padding-left: 3.5rem;
+		border-bottom-right-radius: 9999px;
+		border-top-right-radius: 9999px;
+		background: var(--background-color);
 		color: var(--primary-500);
+		transition: var(--transition);
 	}
 	.icon {
 		font-size: 1.5rem;

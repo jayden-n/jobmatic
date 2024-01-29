@@ -26,7 +26,7 @@ const LoginPage = () => {
 		};
 		try {
 			await customFetch.post('/auth/login', demoData);
-			toast.success('Demo user is in the building!');
+			toast.success("Demo user's in the building!");
 			navigate('/dashboard');
 		} catch (error) {
 			toast.error(error?.response?.data?.msg);
@@ -36,18 +36,20 @@ const LoginPage = () => {
 	return (
 		<Wrapper>
 			<Form method="post" className="form">
-				<Logo />
+				<Link to="/">
+					<Logo />
+				</Link>
 				<h4>login</h4>
 				{errors?.msg && <p style={{ color: 'red' }}>{errors.msg}</p>}
-				<FormRow type="email" name="email" defaultValue="jayden@gmail.com" />
-				<FormRow type="password" name="password" defaultValue="secret123" />
+				<FormRow type="email" name="email" />
+				<FormRow type="password" name="password" />
 
 				<button type="submit" className="btn btn-block" disabled={isSubmitting}>
 					{isSubmitting ? 'submitting...' : 'submit'}
 				</button>
 
 				<button type="submit" className="btn btn-block" onClick={loginDemoUser}>
-					explore the app
+					explore the app!
 				</button>
 
 				<p>
