@@ -15,7 +15,7 @@ const Navbar = () => {
 				</button>
 				<div>
 					<Logo />
-					<h3 className="logo-text">dashboard</h3>
+					<h5 className="logo-text">dashboard</h5>
 				</div>
 
 				<div className="btn-container">
@@ -54,9 +54,11 @@ const Wrapper = styled.nav`
 		display: none;
 	}
 	.logo {
-		display: flex;
-		align-items: center;
-		width: 100px;
+		font-size: 1.8rem;
+		width: 150px;
+	}
+	.letter-logo {
+		font-size: 3.4rem;
 	}
 	.btn-container {
 		display: flex;

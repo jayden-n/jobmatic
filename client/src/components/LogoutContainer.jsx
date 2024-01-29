@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const LogoutContainer = () => {
 	const [showLogout, setShowLogout] = useState(false);
-	const { user, logoutUser } = useDashboardContext();
+	const { user, onLogoutUser } = useDashboardContext();
 
 	// console.log(user.avatar);
 	return (
@@ -27,7 +27,7 @@ const LogoutContainer = () => {
 
 			{/* button toggle */}
 			<div className={showLogout ? 'dropdown show-dropdown' : 'dropdown'}>
-				<button type="button" className="dropdown-btn" onClick={logoutUser}>
+				<button type="button" className="dropdown-btn" onClick={onLogoutUser}>
 					logout
 				</button>
 			</div>
