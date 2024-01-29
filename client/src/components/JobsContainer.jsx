@@ -7,6 +7,7 @@ const JobsContainer = () => {
 	const { data } = useAllJobsContext();
 	const { jobs, totalJobs, numOfPages } = data;
 
+	console.log(jobs);
 	if (jobs.length === 0) {
 		return (
 			<Wrapper>
@@ -18,7 +19,8 @@ const JobsContainer = () => {
 	return (
 		<Wrapper>
 			<h4>
-				{totalJobs} job{totalJobs > 1 && 's'} found
+				{jobs.length} job{jobs.length > 1 && 's'} displayed (in {totalJobs} job
+				{totalJobs > 1 && 's'} found total)
 			</h4>
 			<div className="jobs">
 				{jobs.map((job) => {
@@ -38,6 +40,8 @@ const Wrapper = styled.section`
 		text-transform: none;
 	}
 	& > h4 {
+		text-transform: none;
+
 		font-weight: 600;
 		margin-bottom: 1.5rem;
 	}

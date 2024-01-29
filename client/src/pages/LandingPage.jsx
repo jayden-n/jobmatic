@@ -1,32 +1,26 @@
 import styled from 'styled-components';
 import main from '../assets/images/main.svg';
 import { Link } from 'react-router-dom';
-import { Logo } from '../components';
 
 const LandingPage = () => {
 	return (
 		<Wrapper>
-			<nav>
-				<Link to="/">
-					<Logo />
-				</Link>
-			</nav>
 			<div className="container page">
 				<div className="info">
 					<h1>
-						Job <span>Tracking</span> App
+						<i className="welcome"> Welcome to</i> <span>JobMatic</span>
 					</h1>
 					<p>
-						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse
-						itaque autem hic cum voluptatem earum a quis! Commodi nam sunt quo
-						voluptatibus nemo nesciunt iure pariatur deleniti aut autem.
-						Quibusdam, totam quia.
+						Meet JobMatic - your new job tracking application buddy! 🌟 Keep
+						things simple: manage, update, and track all your applications
+						effortlessly. Ready to simplify your job hunting? Check out JobMatic
+						now!
 					</p>
 					<Link to="/register" className="btn register-link">
 						Register
 					</Link>
 					<Link to="/login" className="btn">
-						Login / Demo Use
+						Login / Demo Usage
 					</Link>
 				</div>
 
@@ -37,24 +31,19 @@ const LandingPage = () => {
 };
 
 const Wrapper = styled.section`
-	nav {
-		width: var(--fluid-width);
-		max-width: var(--max-width);
-		margin: 0 auto;
-		height: var(--nav-height);
-		display: flex;
-		align-items: center;
-	}
-
 	.page {
 		min-height: calc(100vh - var(--nav-height));
 		display: grid;
 		align-items: center;
-		margin-top: -3rem;
+		margin-top: 3rem;
 	}
 
 	h1 {
 		font-weight: 700;
+		margin-left: -0.5rem;
+		.welcome {
+			text-transform: none;
+		}
 		span {
 			color: var(--primary-500);
 		}
@@ -65,7 +54,8 @@ const Wrapper = styled.section`
 		line-height: 2;
 		color: var(--text-secondary-color);
 		margin-bottom: 1.5rem;
-		max-width: 35em;
+		max-width: 38em;
+		font-size: 1.15rem;
 	}
 
 	.register-link {

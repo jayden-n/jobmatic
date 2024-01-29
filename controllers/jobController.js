@@ -41,7 +41,7 @@ export const getAllJobs = async (req, res) => {
 
 	// setup pagination
 	const page = Number(req.query.page) || 1;
-	const limit = Number(req.query.limit) || 10;
+	const limit = Number(req.query.limit) || 8;
 	// 1st page: (1 - 1) * 8 = 0
 	// 2nd page: (2 - 1) * 8 = 8 => skip the first 8 pages to display new 8 pages on the 2nd page
 	const skip = (page - 1) * limit;

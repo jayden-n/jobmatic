@@ -1,7 +1,12 @@
 /* eslint-disable react/prop-types */
-import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
+import {
+	Outlet,
+	useLoaderData,
+	useNavigate,
+	useNavigation,
+} from 'react-router-dom';
 import styled from 'styled-components';
-import { BigSidebar, Navbar, SmallSidebar } from '../components';
+import { BigSidebar, Navbar, SmallSidebar, Loading } from '../components';
 import { createContext, useState } from 'react';
 import { checkDefaultTheme } from '../utils/constants/constants';
 import customFetch from '../utils/api/customFetch';
@@ -13,6 +18,10 @@ const DashboardPage = () => {
 	// pre-fetching user data with loader:
 	const data = useLoaderData();
 	const navigate = useNavigate();
+
+	// global loading
+	const navigation = useNavigation();
+	const isPageLoading = navigation.state === 'loading';
 
 	// getting user data from database
 	const user = data?.user;
@@ -61,7 +70,8 @@ const DashboardPage = () => {
 						<div className="dashboard-page">
 							{/* Outlet for children */}
 							{/* passing user context value to any children */}
-							<Outlet context={{ user }} />
+
+							{isPageLoading ? <Loading /> : <Outlet context={{ user }} />}
 						</div>
 					</div>
 				</main>

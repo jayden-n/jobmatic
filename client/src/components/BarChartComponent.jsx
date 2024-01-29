@@ -20,7 +20,7 @@ const BarChartComponent = ({ data }) => {
 				<Tooltip />
 				<Legend />
 
-				<Bar dataKey="count" fill="#82ca9d" barSize={75} />
+				<Bar dataKey="count" fill="#fbbf24" barSize={75} />
 			</BarChart>
 		</ResponsiveContainer>
 	);
