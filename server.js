@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === 'development') {
 	app.use(morgan('dev'));
 }
 
-// point to public folder for static project img
+// point to folder for static project img
 app.use(express.static(path.resolve(__dirname, './client/dist')));
 
 app.use(cookieParser());
