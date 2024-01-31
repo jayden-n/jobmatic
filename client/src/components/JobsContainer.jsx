@@ -7,7 +7,7 @@ const JobsContainer = () => {
 	const { data } = useAllJobsContext();
 	const { jobs, totalJobs, numOfPages } = data;
 
-	console.log(jobs);
+	// console.log(jobs);
 	if (jobs.length === 0) {
 		return (
 			<Wrapper>
