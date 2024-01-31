@@ -20,12 +20,12 @@ import ErrorElement from './components/ErrorElement';
 
 // ===================== ACTIONS =====================
 import { registerAction } from './utils/actions/registerAction';
-import { addJobAction } from './utils/actions/addJobAction';
+import { addJobAction } from './pages/AddJobPage';
 import { loginAction } from './pages/LoginPage';
 
 // ===================== LOADERS =====================
 import { dashboardLoader } from './pages/DashboardPage';
-import { allJobsLoader } from './utils/loaders/allJobsLoader';
+import { allJobsLoader } from './pages/AllJobsPage';
 
 // ===================== IN-COMPONENT ACTIONS/LOADERS =====================
 import { loader as editJobLoader } from '../src/pages/EditJobPage';
@@ -85,7 +85,7 @@ const router = createBrowserRouter([
 					{
 						path: 'add-job',
 						element: <AddJobPage />,
-						action: addJobAction,
+						action: addJobAction(queryClient),
 					},
 					{
 						path: 'stats',
@@ -102,7 +102,8 @@ const router = createBrowserRouter([
 					{
 						path: 'all-jobs',
 						element: <AllJobsPage />,
-						loader: allJobsLoader,
+						loader: allJobsLoader(queryClient),
+						errorElement: <ErrorElement />,
 					},
 					{
 						path: 'edit-job/:id',
@@ -110,11 +111,11 @@ const router = createBrowserRouter([
 						// get a specific job when load the page
 						loader: editJobLoader,
 						// make a patch request back to the server
-						action: editJobAction,
+						action: editJobAction(queryClient),
 					},
 					{
 						path: 'delete-job/:id',
-						action: deleteJobAction,
+						action: deleteJobAction(queryClient),
 					},
 				],
 			},
