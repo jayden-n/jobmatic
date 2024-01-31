@@ -1,7 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
-import { useLoaderData } from 'react-router-dom';
 import customFetch from '../utils/api/customFetch';
-import { ChartsContainer, Loading, StatsContainer } from '../components';
+import { ChartsContainer, StatsContainer } from '../components';
 import { useQuery } from '@tanstack/react-query';
 
 const statsQuery = {

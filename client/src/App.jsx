@@ -23,7 +23,7 @@ import { loginAction } from './utils/actions/loginAction';
 import { addJobAction } from './utils/actions/addJobAction';
 
 // ===================== LOADERS =====================
-import { dashboardLoader } from './utils/loaders/dashboardLoader';
+import { dashboardLoader } from './pages/DashboardPage';
 import { allJobsLoader } from './utils/loaders/allJobsLoader';
 
 // ===================== IN-COMPONENT ACTIONS/LOADERS =====================
@@ -74,8 +74,8 @@ const router = createBrowserRouter([
 
 			{
 				path: 'dashboard',
-				element: <DashboardPage />,
-				loader: dashboardLoader,
+				element: <DashboardPage queryClient={queryClient} />,
+				loader: dashboardLoader(queryClient),
 				children: [
 					{
 						index: true,

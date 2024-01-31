@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 import {
 	Outlet,
@@ -11,20 +12,37 @@ import { createContext, useState } from 'react';
 import { checkDefaultTheme } from '../utils/constants/constants';
 import customFetch from '../utils/api/customFetch';
 import { toast } from 'react-toastify';
+import { redirect } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+
+const userQuery = {
+	queryKey: ['user'],
+	queryFn: async () => {
+		const { data } = await customFetch.get('/users/current-user');
+		return data;
+	},
+};
+
+export const dashboardLoader = (queryClient) => async () => {
+	try {
+		// ensure cached data
+		return await queryClient.ensureQueryData(userQuery);
+	} catch (error) {
+		// if any issues with JWT, send user back to homepage
+		return redirect('/');
+	}
+};
 
 export const DashboardContext = createContext();
+const DashboardPage = (queryClient) => {
+	// getting current user without requesting data from server when navigating around app
+	const { user } = useQuery(userQuery).data;
 
-const DashboardPage = () => {
-	// pre-fetching user data with loader:
-	const data = useLoaderData();
 	const navigate = useNavigate();
 
 	// global loading
 	const navigation = useNavigation();
 	const isPageLoading = navigation.state === 'loading';
-
-	// getting user data from database
-	const user = data?.user;
 
 	const [showSidebar, setShowSidebar] = useState(false);
 	const [isDarkTheme, setIsDarkTheme] = useState(checkDefaultTheme);
