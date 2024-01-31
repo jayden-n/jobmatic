@@ -4,29 +4,27 @@ import customFetch from '../utils/api/customFetch';
 import { ChartsContainer, Loading, StatsContainer } from '../components';
 import { useQuery } from '@tanstack/react-query';
 
-export const loader = async () => {
+const statsQuery = {
+	queryKey: ['stats'],
+	queryFn: async () => {
+		const response = await customFetch.get('/jobs/stats');
+		return response.data;
+	},
+};
+
+export const loader = (queryClient) => async () => {
+	//  ensureQueryData: get an existing query's cached data
+	const data = await queryClient.ensureQueryData(statsQuery);
 	return null;
 };
 
 const StatsPage = () => {
-	const { data, isLoading, isError } = useQuery({
-		queryKey: ['stats'],
-		queryFn: async () => await customFetch.get('/jobs/stats'),
-	});
-	// 1st try res will be undefined...
-
-	if (isLoading) {
-		return <Loading />;
-	}
-	if (isError) {
-		return <h4>Error...</h4>;
-	}
-
+	// prefer useQuery than useLoaderData because of autofocus
+	// 1st try response will be undefined...
 	// 2nd try will be the data...
-	// console.log(data.data);
-	const { defaultStats, monthlyApplications } = data.data;
+	const { data } = useQuery(statsQuery);
+	const { defaultStats, monthlyApplications } = data;
 
-	// const { defaultStats, monthlyApplications } = useLoaderData();
 	return (
 		<>
 			{/* stats container */}

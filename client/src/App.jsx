@@ -45,7 +45,7 @@ const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
 			// cached time for each request
-			staleTime: 1000 * 60 * 3, // milliseconds => data will be cached for 3 minutes before requesting to server
+			staleTime: 1000 * 60 * 3, // milliseconds => data will be cached for 3 minutes before requesting to server again
 		},
 	},
 });
@@ -90,7 +90,7 @@ const router = createBrowserRouter([
 					{
 						path: 'stats',
 						element: <StatsPage />,
-						loader: statsLoader,
+						loader: statsLoader(queryClient),
 						// error handling: not navigating users away
 						errorElement: <ErrorElement />,
 					},
