@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import {
 	Form,
 	Link,
@@ -9,6 +10,34 @@ import { FormRow, Logo } from '../components';
 import styled from 'styled-components';
 import customFetch from '../utils/api/customFetch';
 import { toast } from 'react-toastify';
+import { redirect } from 'react-router-dom';
+
+export const loginAction =
+	(queryClient) =>
+	async ({ request }) => {
+		const formData = await request.formData();
+		const data = Object.fromEntries(formData);
+
+		// display the errors to the client before it hits server
+		const errors = { msg: '' };
+		if (data.password.length < 3) {
+			errors.msg = 'Password too short...';
+			return errors;
+		}
+
+		try {
+			await customFetch.post('/auth/login', data);
+
+			// validate correct user
+			queryClient.invalidateQueries();
+
+			toast.success('Login successful!');
+			return redirect('/dashboard');
+		} catch (error) {
+			toast.error(error?.response?.data?.msg);
+			return error;
+		}
+	};
 
 const LoginPage = () => {
 	const navigation = useNavigation();

@@ -1,11 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
-import {
-	Outlet,
-	useLoaderData,
-	useNavigate,
-	useNavigation,
-} from 'react-router-dom';
+import { Outlet, useNavigate, useNavigation } from 'react-router-dom';
 import styled from 'styled-components';
 import { BigSidebar, Navbar, SmallSidebar, Loading } from '../components';
 import { createContext, useState } from 'react';
@@ -64,6 +59,10 @@ const DashboardPage = (queryClient) => {
 
 		// clears out the cookie
 		await customFetch.get('/auth/logout');
+
+		// validate correct user
+		queryClient.invalidateQueries();
+
 		toast.success('Logged out successfully!');
 	};
 
