@@ -2,7 +2,7 @@
 
 > A job tracking personalized application that keeps things real simple - create, update/delete, and handlidy manage all your job-hunting activities
 
-## Installation
+## Installation & Setup
 
 1. **Clone Repository:**
 
@@ -43,7 +43,7 @@
     JWT_EXPIRES_IN=YOUR_DESIRED_JWT_EXPIRED_TIME
     ```
 
-4. **Run JobMatic:**
+4. **Launch JobMatic:**
     
     ```sh
     npm run dev
@@ -72,8 +72,10 @@
 
 Future improvements will aim for optimizations in:
 
-- [x] (front-end) creating global loading for better UX/UI to users with not good Internet connection
+- [x] (front-end) adding global loading for better UX/UI to users with not good Internet connection
 
 - [x] (front-end) efficiently data caching & synchronizing with server state with [TanStack Query (F.K.A React Query)](https://tanstack.com/query/latest); instead of requesting data every time user navigating to each page 
       
-- [ ] (front-end) displaying shorter indicator for better UI; instead of whole total pages which might cause bugs if user creates too many job applications
+- [ ] (front-end) displaying shorter Pagination indicator for better UI; instead of whole total pages which might cause bugs if user creates too many job applications
+
+- [ ] migrating to TypeScript for better self-documenting codebase and improving code readability
