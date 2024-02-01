@@ -1,6 +1,6 @@
 # JobMatic 💼
 
-> A job tracking personalized application that keeps things real simple - create, update/delete, and handlidy manage all your job-hunting applications
+> A job tracking personalized application that keeps things real simple - create, update/delete, and handlidy manage all your job-hunting activities
 
 ## Installation
 
@@ -66,9 +66,14 @@
     - [Express.js](https://expressjs.com/) & [Node.js](https://nodejs.org/en) for developing RESTful API requests using HTTP methods (CRUD operations) with layered system
     - [MongoDB](https://www.mongodb.com/) for Cloud Database
     - [Cloudinary](https://cloudinary.com/) for uploading & storing images
-    - [JSON Web Token (JWT)](https://jwt.io/) for securely authenticating & authorizing users
+    - [JSON Web Token (JWT)](https://jwt.io/) for securely authenticating & authorizing user account
 
 ## Optimization:
 
 Future improvements will aim for optimizations in:
-- [x] implement [TanStack Query (F.K.A React Query)](https://tanstack.com/query/latest) for efficiently caching & updating server state; instead of requesting data everytime users navigating to each page
+
+- [x] (front-end) creating global loading for better UX/UI to users with not good Internet connection
+
+- [x] (front-end) efficiently data caching & synchronizing with server state with [TanStack Query (F.K.A React Query)](https://tanstack.com/query/latest); instead of requesting data every time user navigating to each page 
+      
+- [ ] (front-end) displaying shorter indicator for better UI; instead of whole total pages which might cause bugs if user creates too many job applications
