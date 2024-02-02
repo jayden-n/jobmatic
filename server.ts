@@ -66,10 +66,10 @@ app.use('*', (req, res) => {
 //  ================== "ERROR" MIDDLEWARE  ==================
 app.use(errorHandlerMiddleware);
 
-const port = process.env.PORT || 5100;
+const port = (process.env.PORT as unknown) || 5100;
 
 try {
-	await mongoose.connect(process.env.MONGO_URL);
+	await mongoose.connect(process.env.MONGO_URL as string);
 	app.listen(port, () => {
 		console.log(`server is running on ${port}...`);
 	});
