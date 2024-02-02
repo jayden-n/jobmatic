@@ -10,7 +10,7 @@ export const register = async (req, res) => {
 	const isFirstAccount = (await User.countDocuments()) === 0;
 	req.body.role = isFirstAccount ? 'admin' : 'user';
 
-	const hashedPassword = await passwordHashing(req.body.password);
+	const hashedPassword = await passwordHashing(req.body.password as string);
 
 	req.body.password = hashedPassword;
 
@@ -23,7 +23,11 @@ export const login = async (req, res) => {
 	const user = await User.findOne({ email: req.body.email });
 
 	const isValidUser =
-		user && (await comparePassword(req.body.password, user.password));
+		user &&
+		(await comparePassword(
+			req.body.password as string,
+			user.password as string,
+		));
 
 	if (!isValidUser) {
 		throw new UnauthenticatedError('invalid credentials');

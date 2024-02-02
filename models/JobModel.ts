@@ -1,5 +1,18 @@
-import mongoose from 'mongoose';
+import mongoose, { Types } from 'mongoose';
 import { JOB_STATUS, JOB_TYPE } from '../utils/constants.js';
+
+// for better types in frontend
+export type JobType = {
+	_id: string;
+	company: string;
+	position: string;
+	jobStatus: string;
+	jobType: string;
+	jobLocation: string;
+	createdBy: Types.ObjectId;
+	createdAt: Date;
+	updatedAt: Date;
+};
 
 const JobSchema = new mongoose.Schema(
 	{
@@ -30,4 +43,4 @@ const JobSchema = new mongoose.Schema(
 	{ timestamps: true },
 );
 
-export default mongoose.model('Job', JobSchema);
+export default mongoose.model<JobType>('Job', JobSchema);

@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
-import express from 'express';
+import express, { Request, Response } from 'express';
 const app = express();
 import morgan from 'morgan';
 import mongoose from 'mongoose';
@@ -23,14 +23,14 @@ import { authenticateUser } from './middleware/authMiddleware.js';
 
 // ================== COULDINARY ==================
 cloudinary.config({
-	cloud_name: process.env.CLOUD_NAME,
-	api_key: process.env.CLOUD_API_KEY,
-	api_secret: process.env.CLOUD_API_SECRET,
+	cloud_name: process.env.CLOUD_NAME as string,
+	api_key: process.env.CLOUD_API_KEY as string,
+	api_secret: process.env.CLOUD_API_SECRET as string,
 });
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const __dirname: string = dirname(fileURLToPath(import.meta.url));
 
-if (process.env.NODE_ENV === 'development') {
+if ((process.env.NODE_ENV as string) === 'development') {
 	app.use(morgan('dev'));
 }
 
@@ -40,11 +40,11 @@ app.use(express.static(path.resolve(__dirname, './client/dist')));
 app.use(cookieParser());
 app.use(express.json());
 
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
 	res.send('Hello World');
 });
 
-app.get('/api/v1/test', (req, res) => {
+app.get('/api/v1/test', (req: Request, res: Response) => {
 	res.json({ msg: 'test route' });
 });
 
@@ -54,12 +54,12 @@ app.use('/api/v1/users', authenticateUser, userRouter);
 app.use('/api/v1/auth', authRouter);
 
 // gonna hit the front-end since you already npm run build
-app.get('*', (req, res) => {
+app.get('*', (req: Request, res: Response) => {
 	res.sendFile(path.resolve(__dirname, './client/dist', 'index.html'));
 });
 
 //  ================== "NOT FOUND" MIDDLEWARE  ==================
-app.use('*', (req, res) => {
+app.use('*', (req: Request, res: Response) => {
 	res.status(404).json({ msg: 'not found' });
 });
 

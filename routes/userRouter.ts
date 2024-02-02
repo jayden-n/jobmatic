@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import express, { Router } from 'express';
 import {
 	getApplicationStats,
 	getCurrentUser,
@@ -11,7 +11,7 @@ import {
 } from '../middleware/authMiddleware.js';
 import upload from '../middleware/multerMiddleware.js';
 
-const router = Router();
+const router: Router = express.Router();
 
 router.route('/current-user').get(getCurrentUser);
 

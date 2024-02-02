@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import express, { Router } from 'express';
 import {
 	getAllJobs,
 	getSingleJob,
@@ -13,7 +13,7 @@ import {
 } from '../middleware/validationMiddleware.js';
 import { checkForTestUser } from '../middleware/authMiddleware.js';
 
-const router = Router();
+const router: Router = express.Router();
 
 // router.get("/", getAllJobs);
 // router.post("/", createJob);

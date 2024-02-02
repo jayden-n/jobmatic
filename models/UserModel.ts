@@ -1,5 +1,18 @@
-import mongoose from "mongoose";
-import { USER_ROLE } from "../utils/constants.js";
+import mongoose from 'mongoose';
+import { USER_ROLE } from '../utils/constants.js';
+
+// for better types in frontend
+export type UserType = {
+	_id: string;
+	name: string;
+	email: string;
+	password: string;
+	lastName: string;
+	location: string;
+	role: string;
+	avatar: string;
+	avatarPublicId: string;
+};
 
 const UserSchema = new mongoose.Schema({
 	name: String,
@@ -7,12 +20,12 @@ const UserSchema = new mongoose.Schema({
 	password: String,
 	lastName: {
 		type: String,
-		default: "lastName",
+		default: 'lastName',
 	},
 
 	location: {
 		type: String,
-		default: "earth",
+		default: 'earth',
 	},
 	role: {
 		type: String,
@@ -30,4 +43,4 @@ UserSchema.methods.toJSON = function () {
 	return obj;
 };
 
-export default mongoose.model("User", UserSchema);
+export default mongoose.model<UserType>('User', UserSchema);
