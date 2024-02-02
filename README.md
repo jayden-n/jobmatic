@@ -56,17 +56,18 @@
   
     - [React.js](https://react.dev/) for handily building UI out of components
     - [React Context API](https://react.dev/reference/react/useContext) for handling app state management
+    - [TanStack Query (F.K.A React Query)](https://tanstack.com/query/latest) for data feching, caching, synchronizing and updating server state
     - [Recharts.js](https://recharts.org/en-US/) for displaying accurate job-hunting application statistics
-    - [Axios-http](https://axios-http.com/docs/intro) for requesting HTTPS methods to Server (CRUD operations)
+    - [Axios-http](https://axios-http.com/docs/intro) for sending HTTPS requests to Server (CRUD operations)
     - [React-router-dom](https://reactrouter.com/en/main) for client-side routing strategies
     - [styled-components](https://styled-components.com/) for responsive web design
  
 - **Back-end:**
   
-    - [Express.js](https://expressjs.com/) & [Node.js](https://nodejs.org/en) for developing RESTful API requests using HTTP methods (CRUD operations) with layered system
+    - [Express.js](https://expressjs.com/) & [Node.js](https://nodejs.org/en) for developing RESTful API requests/responses using HTTP methods (CRUD operations) with layered validations system
     - [MongoDB](https://www.mongodb.com/) for Cloud Database
     - [Cloudinary](https://cloudinary.com/) for uploading & storing images
-    - [JSON Web Token (JWT)](https://jwt.io/) for securely authenticating & authorizing user account
+    - [JSON Web Token (JWT)](https://jwt.io/) for securely authenticating & authorizing user login/register
 
 ## Optimization:
 
@@ -74,8 +75,8 @@ Future improvements will aim for optimizations in:
 
 - [x] (front-end) adding global loading for better UX/UI to users with not good Internet connection
 
-- [x] (front-end) efficiently data caching & synchronizing with server state with [TanStack Query (F.K.A React Query)](https://tanstack.com/query/latest); instead of requesting data every time user navigating to each page 
+- [x] (front-end) efficiently data caching & synchronizing with server state with [TanStack Query (F.K.A React Query)](https://tanstack.com/query/latest). Instead of requesting data every time user navigating to each page 
       
-- [ ] (front-end) displaying shorter Pagination indicator for better UI; instead of whole total pages which might cause bugs if user creates too many job applications
+- [ ] (front-end) displaying shorter Pagination indicator for better UI. Instead of whole total pages which might cause bugs if user creates too many job applications
 
-- [ ] migrating to TypeScript for better self-documenting codebase and improving code readability
+- [ ] migrating to TypeScript for better self-documenting codebase and improves code readability
