@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 // define the structure of the payload
-interface IJwtPayload {
+export interface IJwtPayload {
 	userId: string;
 	role: string;
 }

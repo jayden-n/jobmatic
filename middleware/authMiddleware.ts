@@ -1,41 +1,68 @@
+import { NextFunction, Request, Response } from 'express';
 import {
 	UnauthenticatedError,
 	UnauthorizedError,
 	BadRequestError,
-} from "../errors/customErrors.js";
-import { verifyJWT } from "../utils/tokenUtils.js";
+} from '../errors/customErrors.js';
+import { verifyJWT, IJwtPayload } from '../utils/tokenUtils.js';
 
-export const authenticateUser = (req, res, next) => {
+// extend Request type to include user property
+declare global {
+	namespace Express {
+		interface Request {
+			user?: {
+				userId: string;
+				role: string;
+				testUser: boolean;
+			};
+		}
+	}
+}
+
+export const authenticateUser = (
+	req: Request,
+	res: Response,
+	next: NextFunction,
+) => {
 	const { token } = req.cookies;
 
 	if (!token) {
-		throw new UnauthenticatedError("authentication invalid");
+		throw new UnauthenticatedError('Authentication invalid');
 	}
 
 	try {
-		const { userId, role } = verifyJWT(token);
-		const testUser = userId === "65a99d0b903d422de8816ae7";
+		const decodedToken = verifyJWT(token);
+
+		if (!decodedToken) {
+			throw new UnauthenticatedError('Authentication invalid');
+		}
+
+		const { userId, role } = decodedToken as IJwtPayload;
+		const testUser = userId === '65a99d0b903d422de8816ae7';
 
 		req.user = { userId, role, testUser };
 		next();
 	} catch (error) {
-		throw new UnauthenticatedError("authentication invalid");
+		throw new UnauthenticatedError('Authentication invalid');
 	}
 };
 
-export const authorizedPermissions = (...roles) => {
-	// console.log(roles);
-	return (req, res, next) => {
-		if (!roles.includes(req.user.role)) {
-			throw new UnauthorizedError("unauthorized to access this route");
+export const authorizedPermissions = (...roles: string[]) => {
+	return (req: Request, res: Response, next: NextFunction) => {
+		if (!req.user || !roles.includes(req.user.role)) {
+			throw new UnauthorizedError('Unauthorized to access this route');
 		}
 		next();
 	};
 };
 
-export const checkForTestUser = (req, res, next) => {
-	if (req.user.testUser) {
-		throw new BadRequestError("Reminder: Demo User. Read-only!");
+export const checkForTestUser = (
+	req: Request,
+	res: Response,
+	next: NextFunction,
+) => {
+	if (req.user && req.user.testUser) {
+		throw new BadRequestError('Reminder: Demo User. Read-only!');
 	}
 
 	next();

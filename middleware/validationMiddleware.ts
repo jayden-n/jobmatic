@@ -1,4 +1,9 @@
-import { body, param, validationResult } from 'express-validator';
+import {
+	ValidationChain,
+	body,
+	param,
+	validationResult,
+} from 'express-validator';
 import {
 	BadRequestError,
 	NotFoundError,
@@ -8,34 +13,38 @@ import { JOB_STATUS, JOB_TYPE } from '../utils/constants.js';
 import mongoose from 'mongoose';
 import Job from '../models/JobModel.js';
 import User from '../models/UserModel.js';
+import { NextFunction, Request, RequestHandler, Response } from 'express';
 
 // ================== USE MODELS AS GUIDELINES ==================
 
-const withValidationErrors = (validateValues) => {
-	return [
-		validateValues,
-		(req, res, next) => {
-			const errors = validationResult(req);
-			if (!errors.isEmpty()) {
-				const errorMessages = errors.array().map((error) => error.msg);
+const withValidationErrors = (
+	validateValues: ValidationChain[],
+): RequestHandler => {
+	return (req: Request, res: Response, next: NextFunction) => {
+		const errors = validationResult(req);
+		if (!errors.isEmpty()) {
+			// join the array of error messages into a single string
+			// before passing it to the error constructors
+			const errorMessages = errors
+				.array()
+				.map((error) => error.msg)
+				.join(', ');
 
-				// throw a 404 error
-				if (errorMessages[0].startsWith('no job')) {
-					throw new NotFoundError(errorMessages);
-				}
-
-				if (errorMessages[0].startsWith('not authorized')) {
-					throw new UnauthorizedError('not authorized to access this route');
-				}
-
-				// if not, throw a 400 error
-				throw new BadRequestError(errorMessages);
+			// throw a 404 error
+			if (errorMessages.startsWith('no job')) {
+				throw new NotFoundError(errorMessages);
 			}
-			next();
-		},
-	];
-};
 
+			if (errorMessages.startsWith('not authorized')) {
+				throw new UnauthorizedError('not authorized to access this route');
+			}
+
+			// if not, throw a 400 error
+			throw new BadRequestError(errorMessages);
+		}
+		next();
+	};
+};
 // export const validateTest = withValidationErrors([
 // 	body("name").notEmpty().withMessage("name is required"),
 // ]);
@@ -113,6 +122,7 @@ export const validateLoginInput = withValidationErrors([
 ]);
 
 // ================== UPDATE USER VALIDATION ==================
+// returns an array of ValidationChain[]
 export const validateUpdateUserInput = withValidationErrors([
 	body('name').notEmpty().withMessage('name is required'),
 	body('email')
