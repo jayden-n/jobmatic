@@ -4,6 +4,7 @@
 > A job tracking personalized application that keeps things real simple - create, update/delete, and handlidy manage all your job-hunting activities
 
 
+---
 
 ## Installation & Setup
 
@@ -53,7 +54,7 @@
     ```
 
 
-<br/>
+---
 
 
 ## Tech Stack
@@ -81,12 +82,12 @@
 
 
 
-<br/>
+---
 
 
 ## What problems can this application solve?
 
-1. **Job Tracking 📆**
+1. **Job Tracking**
    
     - ``Create, Read, Update, Delete (CRUD):``
       
@@ -103,14 +104,14 @@
         - Easily filter and view applications based on their current status
 
 
-2. **Secure Authentication & Authorization 🌐**
+2. **Secure Authentication & Authorization**
 
     - ``JWT Authentication:``
       
         - Utilize JSON Web Token (JWT) for secure authentication and authorization through cookies, ensuring user login and registration processes are protected
 
   
-3. **Sorting & Filtering 🕵️**
+3. **Sorting & Filtering**
 
     - ``Sorting Options:``
    
@@ -122,7 +123,7 @@
 
 
   
-4. **User Profile Management 🖼️**
+4. **User Profile Management**
 
     - ``Profile Editing:``
    
@@ -134,7 +135,7 @@
 
 
 
-5. **Dark/Light Mode 🌚🌞**
+5. **Dark/Light Mode**
 
     - ``Dark/Light Mode Switch:``
 
@@ -143,7 +144,7 @@
 
 
 
-6. **Data Visualization 📊**
+6. **Data Visualization**
 
     - ``Job Application Statistics:``
 
@@ -152,7 +153,7 @@
 
 
 
-7. **Seamless User Experience 🚀**
+7. **Seamless User Experience**
 
     - ``React.js and Context API:``
 
@@ -162,7 +163,7 @@
 
         - Utilize TanStack Query for efficient data fetching, caching, synchronization, and updating server state, making sure users get the latest data
      
-
+---
 
       
 ## Optimizations:
@@ -176,3 +177,14 @@ Future improvements will aim for optimizations in:
 - [ ] (front-end) displaying shorter Pagination indicator for better UI. Instead of whole total pages which might cause bugs if user creates too many job applications
 
 - [x] migrating to TypeScript for better self-documenting codebase and improves code readability
+
+---
+
+## Contributing
+
+Pull requests are welcomed and highly appreciated. Before making any major changes, please feel free to open an issue and initiate a discussion about your ideas. Your valuable input and collaboration are greatly valued!
+
+---
+## License
+
+This web app is available under [MIT](https://choosealicense.com/licenses/mit/).
