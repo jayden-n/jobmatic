@@ -3,9 +3,10 @@ import User from '../models/UserModel.js';
 import { comparePassword, passwordHashing } from '../utils/passwordUtils.js';
 import { UnauthenticatedError } from '../errors/customErrors.js';
 import { createJWT } from '../utils/tokenUtils.js';
+import { Request, Response } from 'express';
 
 // ================== REGISTER ==================
-export const register = async (req, res) => {
+export const register = async (req: Request, res: Response) => {
 	// setting the first account always to be an admin - for easier testing purpose
 	const isFirstAccount = (await User.countDocuments()) === 0;
 	req.body.role = isFirstAccount ? 'admin' : 'user';
@@ -19,7 +20,7 @@ export const register = async (req, res) => {
 };
 
 // ================== LOGIN ==================
-export const login = async (req, res) => {
+export const login = async (req: Request, res: Response) => {
 	const user = await User.findOne({ email: req.body.email });
 
 	const isValidUser =
@@ -52,7 +53,7 @@ export const login = async (req, res) => {
 
 // ================== LOGOUT ==================
 
-export const logout = (req, res) => {
+export const logout = (req: Request, res: Response) => {
 	res.cookie('token', 'logout', {
 		httpOnly: true,
 		expires: new Date(Date.now()),

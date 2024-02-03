@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Form, useNavigation, useOutletContext } from 'react-router-dom';
 import { FormRow, FormRowSelect } from '../components';
-import { JOB_STATUS, JOB_TYPE } from '../../../utils/constants.js';
+import { JOB_STATUS, JOB_TYPE } from '../../../utils/constants.ts';
 import { redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import customFetch from '../utils/api/customFetch.js';

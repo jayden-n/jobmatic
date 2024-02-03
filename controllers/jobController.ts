@@ -2,29 +2,43 @@ import 'express-async-errors';
 import Job from '../models/JobModel.js';
 import { StatusCodes } from 'http-status-codes';
 import mongoose from 'mongoose';
-import dayjs from 'dayjs';
+import { Request, Response } from 'express';
+
+// type guard function
+function isUserDefined(obj: any): obj is { userId: string } {
+	return obj && typeof obj.userId === 'string';
+}
 
 // ================== GET ALL JOBS ==================
-export const getAllJobs = async (req, res) => {
-	const { search, jobStatus, jobType, sort } = req.query;
-
-	const queryObject = {
-		createdBy: req.user.userId,
+export const getAllJobs = async (req: Request, res: Response) => {
+	if (!isUserDefined(req.user)) {
+		return res
+			.status(StatusCodes.UNAUTHORIZED)
+			.json({ error: 'User not authenticated' });
+	}
+	const { search, jobStatus, jobType, sort } = req.query as {
+		search?: string;
+		jobStatus?: string;
+		jobType?: string;
+		sort: 'newest' | 'oldest' | 'a-z' | 'z-a';
 	};
 
-	// check if user input anything in query string
+	const queryObject: any = {
+		createdBy: req.user?.userId,
+	};
+
 	if (search) {
 		queryObject.$or = [
-			// will search for both position & company, dont care about word-casing
 			{
 				position: { $regex: search, $options: 'i' },
 			},
 		];
 	}
-	// company: { $regex: search, $options: 'i' },
+
 	if (jobStatus && jobStatus !== 'all') {
 		queryObject.jobStatus = jobStatus;
 	}
+
 	if (jobType && jobType !== 'all') {
 		queryObject.jobType = jobType;
 	}
@@ -36,7 +50,6 @@ export const getAllJobs = async (req, res) => {
 		'z-a': '-position',
 	};
 
-	// based on dynamic values
 	const sortKey = sortOptions[sort] || sortOptions.newest;
 
 	// setup pagination
@@ -61,14 +74,19 @@ export const getAllJobs = async (req, res) => {
 };
 
 // ================== GET SINGLE JOB  ==================
-export const getSingleJob = async (req, res) => {
+export const getSingleJob = async (req: Request, res: Response) => {
 	const job = await Job.findById(req.params.id);
 
 	res.status(StatusCodes.OK).json({ job });
 };
 
 // ================== CREATE JOB ==================
-export const createJob = async (req, res) => {
+export const createJob = async (req: Request, res: Response) => {
+	if (!isUserDefined(req.user)) {
+		return res
+			.status(StatusCodes.UNAUTHORIZED)
+			.json({ error: 'User not authenticated' });
+	}
 	req.body.createdBy = req.user.userId;
 
 	const job = await Job.create(req.body);
@@ -77,7 +95,7 @@ export const createJob = async (req, res) => {
 };
 
 //  ================== UPDATE JOB  ==================
-export const updateJob = async (req, res) => {
+export const updateJob = async (req: Request, res: Response) => {
 	const updatedJob = await Job.findByIdAndUpdate(req.params.id, req.body, {
 		new: true,
 	});
@@ -86,16 +104,21 @@ export const updateJob = async (req, res) => {
 };
 
 //  ================== DELETE JOB  ==================
-export const deleteJob = async (req, res) => {
+export const deleteJob = async (req: Request, res: Response) => {
 	const removedJob = await Job.findByIdAndDelete(req.params.id);
 
 	res.status(StatusCodes.OK).json({ msg: 'job deleted', job: removedJob });
 };
 
 //  ================== SHOW STATS ==================
-export const showStats = async (req, res) => {
+export const showStats = async (req: Request, res: Response) => {
+	if (!isUserDefined(req.user)) {
+		return res
+			.status(StatusCodes.UNAUTHORIZED)
+			.json({ error: 'User not authenticated' });
+	}
 	// ========= Jobs stats =========
-	let stats = await Job.aggregate([
+	let stats: { [key: string]: number }[] = await Job.aggregate([
 		// Filters the jobs so that only the ones created by the user specified by req.user.userId are passed to the next stage.
 		// The "new mongoose.Types.ObjectId(req.user.userId)" part converts req.user.userId into an ObjectId (which is the format MongoDB uses for ids).
 		{ $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } },
@@ -107,22 +130,12 @@ export const showStats = async (req, res) => {
 
 	// reduce will return an obj
 	// "acc" will be what you return
-	stats = stats.reduce((acc, cur) => {
-		// current values
+	// use array.reduce to process the array of objects
+	const defaultStats = stats.reduce((acc, cur) => {
 		const { _id: title, count } = cur;
-
-		// will have dynamic props from _id: '$jobStatus'
-		// return: { declined: 35, interview: 29, pending: 36 }
 		acc[title] = count;
 		return acc;
-	}, {});
-
-	const defaultStats = {
-		// if new user just signed up, they will get 0 jobs
-		pending: stats.pending || 0,
-		interview: stats.interview || 0,
-		declined: stats.declined || 0,
-	};
+	}, {} as { [key: string]: number });
 
 	// ========= Applications per month =========
 	let monthlyApplications = await Job.aggregate([
@@ -177,23 +190,6 @@ export const showStats = async (req, res) => {
 			};
 		})
 		.reverse();
-	// console.log(monthlyApplications);
-
-	// ========= dummy data =========
-	// let monthlyApplications = [
-	// 	{
-	// 		date: 'May 23',
-	// 		count: 12,
-	// 	},
-	// 	{
-	// 		date: 'June 23',
-	// 		count: 9,
-	// 	},
-	// 	{
-	// 		date: 'July 23',
-	// 		count: 3,
-	// 	},
-	// ];
 
 	res.status(StatusCodes.OK).json({ defaultStats, monthlyApplications });
 };

@@ -2,12 +2,12 @@
 	"name": "jobmatic",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "server.ts",
 	"type": "module",
 	"scripts": {
 		"setup-project": "npm i && cd client && npm i",
 		"setup-production-app": "npm i && cd client && npm i && npm run build",
-		"server": "nodemon server",
+		"server": "npx node --loader ts-node/esm server.ts",
 		"client": "cd client && npm run dev",
 		"dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
 	},
