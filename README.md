@@ -184,7 +184,4 @@ Future improvements will aim for optimizations in:
 
 Pull requests are welcomed and highly appreciated. Before making any major changes, please feel free to open an issue and initiate a discussion about your ideas. Your valuable input and collaboration are greatly valued!
 
----
-## License
 
-This web app is available under [MIT](https://choosealicense.com/licenses/mit/).
