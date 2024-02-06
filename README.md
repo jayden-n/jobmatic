@@ -57,7 +57,7 @@
 ---
 
 
-## Tech Stack
+## Built with a bunch of things, but to name a few:
 
 - **Front-end:**
   
