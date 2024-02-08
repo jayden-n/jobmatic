@@ -85,6 +85,13 @@
 ---
 
 
+## Time taken
+    
+> [!NOTE]
+> 2 months, and counting...
+
+---
+
 ## What problems can this application solve?
 
 1. **Job Tracking**
