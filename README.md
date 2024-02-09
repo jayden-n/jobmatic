@@ -62,6 +62,7 @@
     ```sh
     npm run dev
     ```
+**[Back to top](#table-of-contents)**
 
 ---
 
@@ -71,7 +72,7 @@
 > [!NOTE]
 > 2 months, and counting...
 
-
+**[Back to top](#table-of-contents)**
 
 ---
 
@@ -99,6 +100,7 @@
     - [bcrypt.js](https://www.npmjs.com/package/bcrypt) for secure hashing of user passwords
     - [JSON Web Token (JWT)](https://jwt.io/) for securely authenticating & authorizing user login/register through Cookies
 
+**[Back to top](#table-of-contents)**
 
 ---
 
@@ -179,6 +181,9 @@
     - ``TanStack Query (F.K.A React Query):``
 
         - Utilize TanStack Query for efficient data fetching, caching, synchronization, and updating server state, making sure users get the latest data
+
+
+**[Back to top](#table-of-contents)**
      
 ---
 
@@ -195,6 +200,7 @@ Future improvements will aim for optimization in:
 
 - [ ] (back-end) controlling & limiting the rate of incoming requests from a set of IP addresses in order to protect the Server from potential brute-force attacks
 
+**[Back to top](#table-of-contents)**
 
 ---
 
@@ -254,3 +260,5 @@ Thank you for contributing to JobMatic. Pull requests are welcomed and highly ap
 If you have any questions or need assistance, feel free to open an issue and start a discussion.
 
 Happy Coding! 🚀
+
+**[Back to top](#table-of-contents)**
