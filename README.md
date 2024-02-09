@@ -248,7 +248,7 @@ git push origin feature/your-feature-name
 
 ### Thank You!
 
-Thank you for contributing to JobMatic. Your efforts are valuable, and we appreciate your contribution to making this project better.
+Thank you for contributing to JobMatic. Pull requests are welcomed and highly appreciated.
 
 If you have any questions or need assistance, feel free to open an issue and start a discussion.
 
