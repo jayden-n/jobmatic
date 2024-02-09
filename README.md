@@ -4,6 +4,15 @@
 > A full-stack job tracking personalized application that keeps things real simple - create, update/delete, and handlidy manage all your job-hunting activities
 
 
+## Table of Contents
+
+- [Installation & Setup](#installation--setup)
+- [Time taken](#time-taken)
+- [Built with a bunch of things, but to name a few](#built-with-a-bunch-of-things-but-to-name-a-few)
+- [What problems can this application solve?](#what-problems-can-this-application-solve)
+- [Optimizations](#optimizations)
+- [Contributing](#contributing)
+
 ---
 
 ## Installation & Setup
@@ -53,6 +62,15 @@
     npm run dev
     ```
 
+---
+
+
+## Time taken
+    
+> [!NOTE]
+> 2 months, and counting...
+
+
 
 ---
 
@@ -80,15 +98,6 @@
     - [bcrypt.js](https://www.npmjs.com/package/bcrypt) for secure hashing of user passwords
     - [JSON Web Token (JWT)](https://jwt.io/) for securely authenticating & authorizing user login/register through Cookies
 
-
-
----
-
-
-## Time taken
-    
-> [!NOTE]
-> 2 months, and counting...
 
 ---
 
@@ -190,6 +199,57 @@ Future improvements will aim for optimization in:
 
 ## Contributing
 
-Pull requests are welcomed and highly appreciated. Before making any major changes, please feel free to open an issue and initiate a discussion about your ideas. Your valuable input and collaboration are greatly valued!
+If you're interested in improving JobMatic, here's how you can get involved:
 
+### Getting Started
 
+1. `Fork the repository` to your own GitHub account.
+
+2. Clone the forked repository to your local machine:
+
+    ```sh
+    git clone https://github.com/your-username/jobmatic.git
+    ```
+
+3. Create a new branch for your contributions:
+
+    ```sh
+    git checkout -b feature/your-feature-name
+    ```
+
+### Making Changes
+
+1. Implement your changes and improvements on the new branch.
+
+2. Test your changes thoroughly to ensure they work as expected.
+
+3. Commit your changes with meaningful commit messages:
+
+    ```sh
+    git commit -m "Add your detailed commit message here"
+    ```
+
+### Pushing Changes
+
+Once you're satisfied with your changes, push your branch to your forked repository:
+
+```sh
+git push origin feature/your-feature-name
+```
+### Opening a Pull Request
+
+1. Visit your forked repository on GitHub.
+
+2. Create a Pull Request (PR) from your feature branch to the original repository's `development` branch.
+
+3. Provide a detailed description of your changes in the PR.
+
+4. `Your PR will be reviewed`, and any necessary feedback will be provided.
+
+### Thank You!
+
+Thank you for contributing to JobMatic. Your efforts are valuable, and we appreciate your contribution to making this project better.
+
+If you have any questions or need assistance, feel free to open an issue and start a discussion.
+
+Happy Coding! 🚀
