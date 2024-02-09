@@ -175,15 +175,16 @@
       
 ## Optimizations:
 
-Future improvements will aim for optimizations in:
+Future improvements will aim for optimization in:
 
-- [ ] (back-end) controlling & limiting the rate of incoming requests from a set of IP addresses in order to protect the Server from potential brute-force attacks
+- [x] migrating to TypeScript for better self-documenting codebase and improves code readability
 
-- [x] (front-end) proficiently data caching & synchronizing with server state with [TanStack Query (F.K.A React Query)](https://tanstack.com/query/latest). Instead of requesting data every time user navigating to each page 
+- [x] (front-end) proficiently data caching & synchronizing with server state with [TanStack Query (F.K.A React Query)](https://tanstack.com/query/latest). Instead of requesting data every time user navigating to each page
       
 - [ ] (front-end) displaying shorter Pagination indicator for better UI. Instead of whole total pages which might cause bugs if user creates too many job applications
 
-- [x] migrating to TypeScript for better self-documenting codebase and improves code readability
+- [ ] (back-end) controlling & limiting the rate of incoming requests from a set of IP addresses in order to protect the Server from potential brute-force attacks
+
 
 ---
 
