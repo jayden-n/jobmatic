@@ -1,7 +1,7 @@
 # JobMatic 💼
 
 > [!NOTE]
-> A job tracking personalized application that keeps things real simple - create, update/delete, and handlidy manage all your job-hunting activities
+> A full-stack job tracking personalized application that keeps things real simple - create, update/delete, and handlidy manage all your job-hunting activities
 
 
 ---
