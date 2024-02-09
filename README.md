@@ -97,6 +97,7 @@
     - [Express.js](https://expressjs.com/) & [Node.js](https://nodejs.org/en) for developing RESTful API endpoints, handling HTTP methods (CRUD operations) with layered validations
     - [MongoDB](https://www.mongodb.com/) for Cloud Database (data storage)
     - [Cloudinary](https://cloudinary.com/) for uploading & storing images
+    - [Multer](https://www.npmjs.com/package/multer) for avatar uploading & file validation
     - [bcrypt.js](https://www.npmjs.com/package/bcrypt) for secure hashing of user passwords
     - [JSON Web Token (JWT)](https://jwt.io/) for securely authenticating & authorizing user login/register through Cookies
 
