@@ -171,9 +171,9 @@
 
 7. **Seamless User Experience**
 
-    - ``React.js and Context API:``
+    - ``Job list pagination:``
 
-        - Leverage React.js and React Context API to build a seamless and responsive user interface, ensuring a smooth and enjoyable user experience
+        - Display pagination with 8 job applications per page, which also allows users to navigate to `prev` & `next` or to any desired page
   
     - ``TanStack Query (F.K.A React Query):``
 
