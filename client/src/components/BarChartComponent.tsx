@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import React from 'react';
 import {
 	BarChart,
 	Bar,
@@ -9,8 +10,9 @@ import {
 	Tooltip,
 	Legend,
 } from 'recharts';
+import { IChartsContainer } from './ChartsContainer';
 
-const BarChartComponent = ({ data }) => {
+const BarChartComponent: React.FC<IChartsContainer> = ({ data }) => {
 	return (
 		<ResponsiveContainer width="100%" height={300}>
 			<BarChart data={data} margin={{ top: 50 }}>

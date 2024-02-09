@@ -23,7 +23,7 @@ const StatsPage: React.FC = () => {
 	// 2nd try will be the data...
 	const { data } = useQuery(statsQuery);
 	const { defaultStats, monthlyApplications } = data;
-
+	console.log(monthlyApplications);
 	return (
 		<>
 			{/* stats container */}

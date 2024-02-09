@@ -16,7 +16,7 @@ const LogoutContainer: React.FC = () => {
 				onClick={() => setShowLogout(!showLogout)}
 			>
 				{/* NOTE: fetch from server: {user.firstName} {user.lastName} */}
-				{user.avatar ? (
+				{user?.avatar ? (
 					<img src={user.avatar} alt="avatar" className="img" />
 				) : (
 					<FaUserCircle />

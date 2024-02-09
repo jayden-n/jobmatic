@@ -3,7 +3,7 @@ interface IFormRowProps {
 	name?: string;
 	labelText?: string;
 	defaultValue?: string;
-	onChange?: () => void;
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const FormRow = ({

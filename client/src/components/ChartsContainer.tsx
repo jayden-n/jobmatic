@@ -1,13 +1,24 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
+import React, { useState } from 'react';
 import FlowChart from './FlowChart';
 import BarChartComponent from './BarChartComponent';
 import styled from 'styled-components';
 import { useOutletContext } from 'react-router-dom';
+import { UserType } from '../../../models/UserModel';
 
-const ChartsContainer = ({ data }) => {
+export interface IChartsContainer {
+	data: [
+		{
+			count: number;
+			date: string;
+		},
+	];
+}
+
+const ChartsContainer: React.FC<IChartsContainer> = ({ data }) => {
 	const [barChart, setBarChart] = useState(true);
-	const { user } = useOutletContext();
+	const { user } = useOutletContext() as { user: UserType };
+
 	return (
 		<Wrapper>
 			<div className="user">

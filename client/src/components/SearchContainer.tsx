@@ -4,6 +4,7 @@ import FormRow from './FormRow';
 import FormRowSelect from './FormRowSelect';
 import { JOB_SORT_BY, JOB_STATUS, JOB_TYPE } from '../../../utils/constants';
 import { useAllJobsContext } from '../hooks/useAllJobsContext';
+import React from 'react';
 
 const SearchContainer = () => {
 	const { searchValues } = useAllJobsContext();
@@ -12,15 +13,15 @@ const SearchContainer = () => {
 
 	// submit on change with React-Router
 	const submit = useSubmit();
-	const handleOnChangeSubmit = (e) => {
-		submit(e.currentTarget.form);
+	const handleOnChangeSubmit = (e: React.FormEvent) => {
+		submit((e.currentTarget as HTMLFormElement).form);
 	};
 
 	// debounce function
-	const debounce = (onChange) => {
-		let timeout;
-		return (e) => {
-			const form = e.currentTarget.form;
+	const debounce = (onChange: (form: HTMLFormElement) => void) => {
+		let timeout: NodeJS.Timeout;
+		return (e: React.FormEvent) => {
+			const form = (e.currentTarget as HTMLFormElement).form;
 			clearTimeout(timeout);
 			timeout = setTimeout(() => {
 				onChange(form);
@@ -49,7 +50,9 @@ const SearchContainer = () => {
 						name="jobStatus"
 						list={['all', ...Object.values(JOB_STATUS)]}
 						defaultValue={jobStatus}
-						onChange={handleOnChangeSubmit}
+						onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+							handleOnChangeSubmit(e)
+						}
 					/>
 
 					<FormRowSelect
@@ -57,14 +60,18 @@ const SearchContainer = () => {
 						name="jobType"
 						list={['all', ...Object.values(JOB_TYPE)]}
 						defaultValue={jobType}
-						onChange={handleOnChangeSubmit}
+						onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+							handleOnChangeSubmit(e)
+						}
 					/>
 
 					<FormRowSelect
 						name="sort"
 						defaultValue={sort}
 						list={[...Object.values(JOB_SORT_BY)]}
-						onChange={handleOnChangeSubmit}
+						onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+							handleOnChangeSubmit(e)
+						}
 					/>
 
 					{/* Link to reset all the query params values in URL */}

@@ -3,7 +3,7 @@ interface IFormRowSelectProps {
 	labelText?: string;
 	list: string[];
 	defaultValue?: string;
-	onChange?: () => void;
+	onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const FormRowSelect = ({

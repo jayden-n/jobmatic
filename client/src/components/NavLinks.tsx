@@ -10,7 +10,8 @@ const NavLinks = ({ isBigSidebar }: { isBigSidebar: boolean }) => {
 		<div className="nav-links">
 			{links.map((link) => {
 				const { text, path, icon } = link;
-				const { role } = user;
+				// nullish coalescing operator to handle undefined user
+				const { role } = user ?? {};
 
 				{
 					/* confirm if user is admin or not to display admin */
@@ -22,7 +23,7 @@ const NavLinks = ({ isBigSidebar }: { isBigSidebar: boolean }) => {
 						to={path}
 						key={text}
 						className="nav-link"
-						onClick={isBigSidebar ? null : toggleSidebar}
+						onClick={isBigSidebar ? undefined : toggleSidebar}
 						// end: do not set current child to be 'active'
 						end
 					>

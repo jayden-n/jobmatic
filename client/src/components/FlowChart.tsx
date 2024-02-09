@@ -8,8 +8,9 @@ import {
 	CartesianGrid,
 	Tooltip,
 } from 'recharts';
+import { IChartsContainer } from './ChartsContainer';
 
-const FlowChart: React.FC = ({ data }) => {
+const FlowChart: React.FC<IChartsContainer> = ({ data }) => {
 	return (
 		<ResponsiveContainer width="100%" height={300}>
 			<AreaChart data={data} margin={{ top: 50 }}>

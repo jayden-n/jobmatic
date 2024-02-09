@@ -1,42 +1,34 @@
+import React from 'react';
 import styled from 'styled-components';
-import { useAllJobsContext } from '../hooks/useAllJobsContext';
 import {
 	TbSquareRoundedArrowLeftFilled,
 	TbSquareRoundedArrowRightFilled,
 } from 'react-icons/tb';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { NavigateFunction, useLocation, useNavigate } from 'react-router-dom';
+import { useAllJobsContext } from '../hooks/useAllJobsContext';
 
-const PageBtnContainer = () => {
+const PageBtnContainer: React.FC = () => {
 	const {
 		data: { numOfPages, currentPage },
 	} = useAllJobsContext();
 
-	// _ in cb func wants to access to the "undefined" from "length" (not needed)
-	const pages = Array.from({ length: numOfPages }, (_, index) => {
-		// array starts with 0, but numOfPages on server starts with 1
-		return index + 1; // [1, 2, 3, 4, 5, ..., 10]
-	});
+	const pages = Array.from({ length: numOfPages }, (_, index) => index + 1);
 
 	const { search, pathname } = useLocation();
-	// console.log(search, pathname);
-	const navigate = useNavigate();
+	const navigate: NavigateFunction = useNavigate();
 
-	const handlePageChange = (pageNum) => {
+	const handlePageChange = (pageNum: number) => {
 		const searchParams = new URLSearchParams(search);
-		// "page" is what server looking for current page
-		// => to set in the URL
-		searchParams.set('page', pageNum);
+		searchParams.set('page', pageNum.toString());
 		navigate(`${pathname}?${searchParams.toString()}`);
 	};
 
 	return (
 		<Wrapper>
-			{/* PREV BUTTON */}
 			<button
 				className="btn prev-btn"
 				onClick={() => {
 					let prevPage = currentPage - 1;
-					// if go back less than 1, it will go to page 10 (which is numOfPages)
 					if (prevPage < 1) prevPage = numOfPages;
 					handlePageChange(prevPage);
 				}}
@@ -45,27 +37,22 @@ const PageBtnContainer = () => {
 				prev
 			</button>
 
-			{/* DISPLAYING PAGE NUMBERS */}
 			<div className="btn-container">
-				{pages.map((pageNum) => {
-					return (
-						<button
-							key={pageNum}
-							className={`btn page-btn ${pageNum === currentPage && 'active'}`}
-							onClick={() => handlePageChange(pageNum)}
-						>
-							{pageNum}
-						</button>
-					);
-				})}
+				{pages.map((pageNum) => (
+					<button
+						key={pageNum}
+						className={`btn page-btn ${pageNum === currentPage && 'active'}`}
+						onClick={() => handlePageChange(pageNum)}
+					>
+						{pageNum}
+					</button>
+				))}
 			</div>
 
-			{/* NEXT BUTTON */}
 			<button
 				className="btn next-btn"
 				onClick={() => {
 					let nextPage = currentPage + 1;
-					// if go forward more than 1, it will go back to 1st page
 					if (nextPage > numOfPages) nextPage = 1;
 					handlePageChange(nextPage);
 				}}
