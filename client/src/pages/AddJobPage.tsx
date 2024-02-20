@@ -6,7 +6,7 @@ import { FormRow, FormRowSelect } from '../components';
 import { JOB_STATUS, JOB_TYPE } from '../../../utils/constants';
 import { redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import customFetch from '../utils/api/customFetch.js';
+import customFetch from '../utils/api/customFetch';
 import { QueryClient } from '@tanstack/react-query';
 import { UserType } from '../../../models/UserModel';
 
