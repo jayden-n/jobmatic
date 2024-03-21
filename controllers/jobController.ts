@@ -1,12 +1,12 @@
-import 'express-async-errors';
-import Job from '../models/JobModel.js';
-import { StatusCodes } from 'http-status-codes';
-import mongoose from 'mongoose';
-import { Request, Response } from 'express';
+import "express-async-errors";
+import Job from "../models/JobModel.js";
+import { StatusCodes } from "http-status-codes";
+import mongoose from "mongoose";
+import { Request, Response } from "express";
 
 // type guard function
 function isUserDefined(obj: any): obj is { userId: string } {
-	return obj && typeof obj.userId === 'string';
+	return obj && typeof obj.userId === "string";
 }
 
 // ================== GET ALL JOBS ==================
@@ -14,13 +14,13 @@ export const getAllJobs = async (req: Request, res: Response) => {
 	if (!isUserDefined(req.user)) {
 		return res
 			.status(StatusCodes.UNAUTHORIZED)
-			.json({ error: 'User not authenticated' });
+			.json({ error: "User not authenticated" });
 	}
 	const { search, jobStatus, jobType, sort } = req.query as {
 		search?: string;
 		jobStatus?: string;
 		jobType?: string;
-		sort: 'newest' | 'oldest' | 'a-z' | 'z-a';
+		sort: "newest" | "oldest" | "a-z" | "z-a";
 	};
 
 	const queryObject: any = {
@@ -30,24 +30,24 @@ export const getAllJobs = async (req: Request, res: Response) => {
 	if (search) {
 		queryObject.$or = [
 			{
-				position: { $regex: search, $options: 'i' },
+				position: { $regex: search, $options: "i" },
 			},
 		];
 	}
 
-	if (jobStatus && jobStatus !== 'all') {
+	if (jobStatus && jobStatus !== "all") {
 		queryObject.jobStatus = jobStatus;
 	}
 
-	if (jobType && jobType !== 'all') {
+	if (jobType && jobType !== "all") {
 		queryObject.jobType = jobType;
 	}
 
 	const sortOptions = {
-		'newest': '-createdAt',
-		'oldest': 'createdAt',
-		'a-z': 'position',
-		'z-a': '-position',
+		"newest": "-createdAt",
+		"oldest": "createdAt",
+		"a-z": "position",
+		"z-a": "-position",
 	};
 
 	const sortKey = sortOptions[sort] || sortOptions.newest;
@@ -85,7 +85,7 @@ export const createJob = async (req: Request, res: Response) => {
 	if (!isUserDefined(req.user)) {
 		return res
 			.status(StatusCodes.UNAUTHORIZED)
-			.json({ error: 'User not authenticated' });
+			.json({ error: "User not authenticated" });
 	}
 	req.body.createdBy = req.user.userId;
 
@@ -100,14 +100,14 @@ export const updateJob = async (req: Request, res: Response) => {
 		new: true,
 	});
 
-	res.status(StatusCodes.OK).json({ msg: 'job modified!', job: updatedJob });
+	res.status(StatusCodes.OK).json({ msg: "job modified!", job: updatedJob });
 };
 
 //  ================== DELETE JOB  ==================
 export const deleteJob = async (req: Request, res: Response) => {
 	const removedJob = await Job.findByIdAndDelete(req.params.id);
 
-	res.status(StatusCodes.OK).json({ msg: 'job deleted', job: removedJob });
+	res.status(StatusCodes.OK).json({ msg: "job deleted", job: removedJob });
 };
 
 //  ================== SHOW STATS ==================
@@ -115,7 +115,7 @@ export const showStats = async (req: Request, res: Response) => {
 	if (!isUserDefined(req.user)) {
 		return res
 			.status(StatusCodes.UNAUTHORIZED)
-			.json({ error: 'User not authenticated' });
+			.json({ error: "User not authenticated" });
 	}
 	// ========= Jobs stats =========
 	let stats: { [key: string]: number }[] = await Job.aggregate([
@@ -125,7 +125,7 @@ export const showStats = async (req: Request, res: Response) => {
 
 		// Groups the remaining jobs by their status (the jobStatus field).
 		// For each group, it calculates the count of jobs by adding 1 for each job ({ $sum: 1 }), and stores this in a field called count.
-		{ $group: { _id: '$jobStatus', count: { $sum: 1 } } },
+		{ $group: { _id: "$jobStatus", count: { $sum: 1 } } },
 	]);
 
 	// reduce will return an obj
@@ -143,7 +143,7 @@ export const showStats = async (req: Request, res: Response) => {
 		{
 			$group: {
 				// display the month / year thru $createdAt
-				_id: { year: { $year: '$createdAt' }, month: { $month: '$createdAt' } },
+				_id: { year: { $year: "$createdAt" }, month: { $month: "$createdAt" } },
 				count: { $sum: 1 },
 			},
 			// ==> {
@@ -158,8 +158,8 @@ export const showStats = async (req: Request, res: Response) => {
 			// sort out the latest month first
 			$sort: {
 				// starts with the biggest value
-				'_id.year': -1,
-				'_id.month': -1,
+				"_id.year": -1,
+				"_id.month": -1,
 			},
 		},
 		{ $limit: 6 },
@@ -168,18 +168,18 @@ export const showStats = async (req: Request, res: Response) => {
 	monthlyApplications = monthlyApplications
 		.map((item) => {
 			const monthNames = [
-				'Jan',
-				'Feb',
-				'Mar',
-				'Apr',
-				'May',
-				'Jun',
-				'Jul',
-				'Aug',
-				'Sep',
-				'Oct',
-				'Nov',
-				'Dec',
+				"Jan",
+				"Feb",
+				"Mar",
+				"Apr",
+				"May",
+				"Jun",
+				"Jul",
+				"Aug",
+				"Sep",
+				"Oct",
+				"Nov",
+				"Dec",
 			];
 
 			const date = `${monthNames[item._id.month - 1]} ${item._id.year}`;
