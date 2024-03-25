@@ -2,17 +2,18 @@
 
 > [!NOTE]
 > A full-stack job tracking personalized application that keeps things real simple - create, update/delete, and handlidy manage all your job-hunting activities
+<img width="1728" alt="jobmatic" src="https://github.com/jayden-n/jobmatic/assets/94060508/80422494-17f8-47e8-a7a4-c32f4c11cfc0">
 
 ---
 
 ## Table of Contents
 
-- [Installation & Setup](#installation--setup)
-- [Time taken](#time-taken)
-- [Built with a bunch of things, but to name a few](#built-with-a-bunch-of-things-but-to-name-a-few)
-- [What problems can this application solve?](#what-problems-can-this-application-solve)
-- [Optimizations](#optimizations)
-- [Contributing](#contributing)
+- [Installation & Setup](#installation--setup) 🛠️
+- [Time taken](#time-taken) ⏳
+- [Built with a bunch of things, but to name a few](#built-with-a-bunch-of-things-but-to-name-a-few) 🧩
+- [What problems can this application solve?](#what-problems-can-this-application-solve) 🔍
+- [Optimizations](#optimizations) 📈
+- [Contributing](#contributing) 🔥
 
 ---
 
