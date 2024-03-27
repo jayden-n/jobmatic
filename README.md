@@ -3,6 +3,7 @@
 > [!NOTE]
 > A full-stack job tracking personalized application that keeps things real simple - create, update/delete, and handlidy manage all your job-hunting activities
 <img width="1728" alt="jobmatic" src="https://github.com/jayden-n/jobmatic/assets/94060508/80422494-17f8-47e8-a7a4-c32f4c11cfc0">
+<img width="1727" alt="Screenshot 2024-03-20 at 4 28 27 PM" src="https://github.com/jayden-n/jobmatic/assets/94060508/7bcd6e8c-2632-4898-8bf6-f4d34a4c27b6">
 
 ---
 
